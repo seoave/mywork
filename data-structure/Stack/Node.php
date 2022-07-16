@@ -2,21 +2,21 @@
 
 class Node
 {
-    private mixed $data;
-    private Node $next;
+    private $data;
+    private $next;
 
-    public function __construct(mixed $data, ?Node $next = null)
+    public function __construct($data, ?Node $next = null)
     {
         $this->data = $data;
         $this->next = $next;
     }
 
-    public function getData(): mixed
+    public function getData()
     {
         return $this->data;
     }
 
-    public function setData(mixed $data): Node
+    public function setData($data): Node
     {
         $this->data = $data;
 
