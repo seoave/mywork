@@ -5,8 +5,6 @@ namespace DataStructure\Tree;
 class Node
 {
     private $data;
-    private $left = null;
-    private $right = null;
 
     public function __construct(int $data, ?Node $left = null, ?Node $right = null)
     {
@@ -15,7 +13,7 @@ class Node
         $this->right = $right;
     }
 
-    public function insert(int $data)
+    public function insert(int $data): self
     {
         if ($data > $this->getData()) {
             // right branch
@@ -36,24 +34,27 @@ class Node
         return $this;
     }
 
-    public function search($value)
+    public function search($value): bool
     {
-        if ($this->data === null) {
-            return false;
-        }
-
         if ($value === $this->data) {
             return true;
         }
 
         if ($value > $this->data) {
             // to the right branch
-            $this->getRight()->search($value);
+            if ($this->getRight() === null) {
+                return false;
+            } else {
+                $this->getRight()->search($value);
+            }
         } else {
             //to the left branch
-            $this->getLeft()->search($value);
+            if ($this->getLeft() === null) {
+                return false;
+            } else {
+                $this->getLeft()->search($value);
+            }
         }
-
         return false;
     }
 
