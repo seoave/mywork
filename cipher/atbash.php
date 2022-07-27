@@ -1,9 +1,6 @@
 <?php
-$alfabet = 'abcdefghijklmnopqrstuvwxyz';
+$alfabet = 'abcdefghijklmnopqrstuvwxyz0123456789';
 $cipherTable = array_combine(str_split($alfabet), str_split(strrev($alfabet)));
-
-
-$inputString = 'mama';
 
 function atbashCipher(string $input, $cipherTable): string
 {
@@ -12,7 +9,7 @@ function atbashCipher(string $input, $cipherTable): string
     }
 
     $output = '';
-    $arrayFromInput = str_split($input);
+    $arrayFromInput = str_split(strtolower($input));
 
     foreach ($arrayFromInput as $char) {
         if (array_key_exists($char, $cipherTable)) {
@@ -25,4 +22,4 @@ function atbashCipher(string $input, $cipherTable): string
     return $input . ' = ' . $output;
 }
 
-var_dump(atbashCipher('abc ddd', $cipherTable));
+var_export(atbashCipher('I love Ukraine 333', $cipherTable));
