@@ -4,8 +4,8 @@ $cipherTable = array_combine(str_split($alfabet), str_split(strrev($alfabet)));
 
 function atbashCipher(string $input, $cipherTable): string
 {
-    if (empty($input)) {
-        return 'Add input string, only english letters';
+    if (empty(trim($input))) {
+        return 'Add input string, only english letters and numbers';
     }
 
     $output = '';
@@ -22,4 +22,4 @@ function atbashCipher(string $input, $cipherTable): string
     return $input . ' = ' . $output;
 }
 
-var_export(atbashCipher('I love Ukraine 333', $cipherTable));
+var_export(atbashCipher('    ', $cipherTable));
