@@ -41,10 +41,11 @@ class AtbashCipher
 
         $output = '';
         $arrayFromEncoded = str_split(strtolower($encoded));
+        $decodeTable = array_flip($this->cipherTable);
 
         foreach ($arrayFromEncoded as $char) {
             if (in_array($char, $this->cipherTable)) {
-                $output .= array_search($char, $this->cipherTable);
+                $output .= $decodeTable[$char];
             } else {
                 $output .= ' ';
             }
