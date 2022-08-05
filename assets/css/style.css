@@ -1,0 +1,80 @@
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+* {
+    font-family: Helvetica, sans-serif;
+}
+
+h1 {
+    font-size: 38px;
+    color: #51504e;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+h2 {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+h4 {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.mb-36 {
+    margin-bottom: 36px;
+}
+
+.candidate-profile {
+    color: #838383;
+}
+
+.candidate-profile h3 {
+    font-weight: 600;
+}
+
+.photo-position-contact {
+    display: flex;
+    margin-bottom: 36px;
+}
+
+.candidate-photo {
+    height: 300px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 48px;
+}
+
+.desired-salary, .desired-work-type {
+    font-size: 20px;
+    display: block;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.similiar-profile {
+    margin-bottom: 12px;
+}
+
+.similiar-profile h4 {
+    margin-bottom: 0;
+}
+
+.similiar-profiles ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.similiar-profile span {
+    display: block;
+}
