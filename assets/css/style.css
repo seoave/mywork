@@ -78,3 +78,19 @@ h4 {
 .similiar-profile span {
     display: block;
 }
+
+.circle {
+    width: 200px;
+    height: 200px;
+    background-color: #dc5ba3;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle span {
+    font-size: 66px;
+    color: #fff;
+    font-weight: 700;
+}
