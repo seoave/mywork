@@ -94,3 +94,10 @@ h4 {
     color: #fff;
     font-weight: 700;
 }
+
+#registration {
+    margin: 0 auto;
+    max-width: 525px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
