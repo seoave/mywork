@@ -2,16 +2,29 @@
 
 namespace App\Model;
 
+use DateTime;
+
 class User
 {
-    private string $login;
-    private string $email;
     private string $name;
-    private string $role;
-    private string $country;
-    private string $city;
-    private string $phone;
-    private string $photo;
+    private string $role = 'registered'; // guest, registered, applicant, recruiter, editor, administrator
+    private ?string $login = null;
+    private ?string $email = null;
+    private ?DateTime $birthday = null;
+    private ?string $country = null;
+    private ?string $city = null;
+    private ?string $phone = null;
+    private ?string $photo = null;
+
+    public function __construct(string $name)
+    {
+        $this->name = $name;
+    }
+
+    public function getBirthday(): ?DateTime
+    {
+        return $this->birthday;
+    }
 
     public function getCountry(): string
     {
@@ -91,5 +104,10 @@ class User
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function setBirthday(?DateTime $birthday): void
+    {
+        $this->birthday = $birthday;
     }
 }
