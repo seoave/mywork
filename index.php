@@ -1,15 +1,17 @@
 <?php
-require_once __DIR__ . '/bootstrap.php';
 
 use App\Model\User;
+use App\Repository\JsonRepository;
 
-$user = new User('Dolores');
-$user->setCity('WildWest');
+require_once __DIR__ . '/bootstrap.php';
 
+$userDolores = new User('Dolores');
+$userDolores->setCity('WildWest');
+$userPiter = new User('Piter');
+$userPiter->setCountry('WildWest');
 
-$datetime = new DateTime();
-$timezone = new DateTimeZone('Europe/Kiev');
-$datetime->setTimezone($timezone);
-echo $datetime->format('d M Y');
-
-var_dump($user);
+$DS = DIRECTORY_SEPARATOR;
+$repository = new JsonRepository(__DIR__ . $DS . 'db' . $DS . 'users.json');
+var_dump($repository);
+$repository->create($userDolores);
+//$repository->create($userPiter);

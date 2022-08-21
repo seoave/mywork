@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Model;
 
 use DateTime;
 
 class User
 {
+    private ?int $id = null;
     private string $name;
     private string $role = 'registered'; // guest, registered, applicant, recruiter, editor, administrator
     private ?string $login = null;
@@ -19,6 +22,16 @@ class User
     public function __construct(string $name)
     {
         $this->name = $name;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
     }
 
     public function getBirthday(): ?DateTime
@@ -109,5 +122,21 @@ class User
     public function setBirthday(?DateTime $birthday): void
     {
         $this->birthday = $birthday;
+    }
+
+    public function toStorage(): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'role' => $this->role,
+            'login' => $this->login,
+            'email' => $this->email,
+            'birthday' => $this->birthday?->getTimestamp(),
+            'country' => $this->country,
+            'city' => $this->city,
+            'phone' => $this->phone,
+            'photo' => $this->photo
+        ];
     }
 }
