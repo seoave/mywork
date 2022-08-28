@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
+use App\Model\ModelInterface;
+use App\Model\User;
+
 class JsonRepository
 {
     public function __construct(
@@ -14,11 +17,50 @@ class JsonRepository
         }
     }
 
-    public function find($id): object
+    public function find($id): ?ModelInterface
     {
+        if (! is_readable($this->filePath)) {
+            die('File does not exist');
+        }
+
+        $currentUsers = json_decode(file_get_contents($this->filePath), true);
+
+        foreach ($currentUsers as $user) {
+            if ($user['id'] == $id) {
+                return User::createFromStorage($user);
+            }
+        }
+
+        return null;
     }
 
-    public function create(object $model)
+    public function findEmail(string $email): ?ModelInterface
+    {
+        if (! is_readable($this->filePath)) {
+            die('File does not exist');
+        }
+
+        $currentUsers = json_decode(file_get_contents($this->filePath), true);
+
+        foreach ($currentUsers as $user) {
+            if ($user['email'] == $email) {
+                return User::createFromStorage($user);
+            }
+        }
+
+        return null;
+    }
+
+    public function findAll(): array
+    {
+        $users = json_decode(file_get_contents($this->filePath), true);
+        return array_map(
+            fn(array $user) => User::createFromStorage($user),
+            $users
+        );
+    }
+
+    public function create(ModelInterface $model): ModelInterface
     {
         if (! is_readable($this->filePath)) {
             die('File does not exist');
@@ -35,15 +77,18 @@ class JsonRepository
         }
 
         $currentUsers[] = $model->toStorage();
-        $updatedUsersJson = json_encode($currentUsers);
-        file_put_contents($this->filePath, $updatedUsersJson);
+        file_put_contents($this->filePath, json_encode($currentUsers));
+
+        return $model;
     }
 
     public function update($model): object
     {
+        // TODO
     }
 
     public function delete($id)
     {
+        //TODO
     }
 }
