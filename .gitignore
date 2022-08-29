@@ -1,2 +1,4 @@
-.idea/
-.idea/sonarlint/issuestore/
+# WebStorm / PhpStorm
+.idea/*
+.idea
+/vendor/
