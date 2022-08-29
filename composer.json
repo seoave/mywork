@@ -1,0 +1,17 @@
+{
+    "name": "hyperion-user/mywork",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Seoave",
+            "email": "seo.ave@gmail.com"
+        }
+    ],
+    "require": {
+      "ext-mbstring": "*"
+    }
+}
