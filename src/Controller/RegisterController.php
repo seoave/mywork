@@ -16,7 +16,7 @@ class RegisterController extends AbstractController
         return $this->render('registration');
     }
 
-    public function sendRegisterForm()
+    public function sendRegisterForm(): void
     {
         // var_export($_POST);
         $name = trim($_POST['registrationName'] ?? null);
@@ -25,11 +25,11 @@ class RegisterController extends AbstractController
         $role = trim($_POST['registrationRole'] ?? null);
 
         if (! $name || ! $email || ! $plainPassword || ! $role) {
-            return 'Fill all fields';
+            echo 'Fill all fields';
         }
 
         if (Authorization::userExists($email)) {
-            echo 'This email is using by existing user. Login, please.';
+            echo 'This email is using by existing user. <a href="/login">Login, please.</a>';
             // header("Location: /login");
             // exit();
         } else {
@@ -44,14 +44,16 @@ class RegisterController extends AbstractController
             // exit();
         }
 
-        if ($newUser->getRole() === 'candidate') {
-            echo 'Redirect to your candidate profile';
-            // header("Location: /candidate/profile/{profileId}");
-            // exit();
-        } else {
-            echo 'Redirect to your recruiter profile';
-            // header("Location: /candidate/profile/{profileId}");
-            // exit();
+        if (isset($newUser)) {
+            if ($newUser?->getRole() === 'candidate') {
+                echo 'Redirect to your candidate profile';
+                // header("Location: /candidate/profile/{profileId}");
+                // exit();
+            } else {
+                echo 'Redirect to your recruiter profile';
+                // header("Location: /candidate/profile/{profileId}");
+                // exit();
+            }
         }
     }
 }
