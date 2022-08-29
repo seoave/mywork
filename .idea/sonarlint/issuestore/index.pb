@@ -1,7 +1,4 @@
 
-:
-
-.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 D
 assets/css/style.css,1\a\1a089276572549feadb2cf0f549079264df9ef17
 D
