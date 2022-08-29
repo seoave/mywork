@@ -12,7 +12,7 @@ class User implements ModelInterface
     private ?int $id = null;
     private string $name;
     private ?string $email;
-    private ?string $role = 'registered'; // guest, registered, applicant, recruiter, editor, administrator
+    private ?string $role = 'registered'; // guest, registered, candidate, recruiter, editor, administrator
     private DateTime|null $birthday = null;
     private ?string $country = null;
     private ?string $city = null;

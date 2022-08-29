@@ -141,5 +141,18 @@
     "city": null,
     "phone": null,
     "photo": null
+  },
+  {
+    "id": 11,
+    "name": "Bernard",
+    "role": "candidate",
+    "email": "bernard@mail.ww",
+    "salt": "2T1PV1Oiuecgu",
+    "password": "1a87028bf2639ff157dd2c430954f3bd",
+    "birthday": null,
+    "country": null,
+    "city": null,
+    "phone": null,
+    "photo": null
   }
 ]

@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Configuration;
-use App\Model\User;
-use App\Repository\JsonRepository;
+use App\Authorization;
 
 class LoginController extends AbstractController
 {
-    public function getLoginPage()
+    public function getLoginPage(): string
     {
         return $this->render('login');
     }
@@ -21,29 +19,18 @@ class LoginController extends AbstractController
         $loginPassword = trim($_POST['loginPassword']);
 
         if (empty($loginEmail) || empty($loginPassword)) {
-            echo 'Your login or password is empty.'; // send message to login page
+            echo 'Your login or password is empty.'; //TODO send message to login page
             // header("Location: /login");
-         //   exit();
+            //   exit();
         }
 
-        if (static::authorization($loginEmail, $loginPassword)) {
+        if (Authorization::authorization($loginEmail, $loginPassword)) {
             echo 'Pass is OK';
             //  header("Location: /candidate"); // TODO condition hr or candidate
         } else {
-            echo 'Your password is wrong.'; // send message to login page
+            echo 'Your password is wrong.'; //TODO send message to login page
             // header("Location: /login");
-           // exit();
+            // exit();
         }
-    }
-
-    public static function authorization(string $email, string $password): bool
-    {
-        $repository = new JsonRepository(Configuration::getParameter('user_db'));
-        /** @var User $user */
-        $user = $repository->findEmail($email);
-        if ($user === null) {
-            return false;
-        }
-        return $user->getPassword() === md5($password . $user->getSalt());
     }
 }
