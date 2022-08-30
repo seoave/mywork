@@ -34,7 +34,7 @@ class JsonRepository
         return null;
     }
 
-    public function findEmail(string $email): ?ModelInterface
+    public function findByEmail(string $email): ?ModelInterface
     {
         if (! is_readable($this->filePath)) {
             die('File does not exist');

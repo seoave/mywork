@@ -8,14 +8,18 @@ class AbstractController
 {
     protected const TEMPLATE_EXT = ['php', 'html'];
 
-    public function render(string $templateName): string
+    public function render(string $templateName, array $args = []): string
     {
         $basePath = $_SERVER['DOCUMENT_ROOT'] . '/templates/';
 
         foreach (self::TEMPLATE_EXT as $ext) {
             $fileName = $basePath . $templateName . '.' . $ext;
             if (file_exists($fileName)) {
-                return file_get_contents($fileName);
+                ob_start();
+                include $fileName;
+                $view = ob_get_contents();
+                ob_end_clean();
+                return $view;
             }
         }
 

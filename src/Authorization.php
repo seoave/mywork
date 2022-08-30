@@ -11,7 +11,7 @@ class Authorization
     {
         $repository = new JsonRepository(Configuration::getParameter('user_db'));
         /** @var User $user */
-        $user = $repository->findEmail($email);
+        $user = $repository->findByEmail($email);
         if ($user === null) {
             return false;
         }
@@ -26,7 +26,7 @@ class Authorization
     {
         $repository = new JsonRepository(Configuration::getParameter('user_db'));
         /** @var User $user */
-        $user = $repository->findEmail($email);
+        $user = $repository->findByEmail($email);
         if ($user === null) {
             return false;
         }
