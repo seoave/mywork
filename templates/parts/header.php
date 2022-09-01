@@ -1,14 +1,16 @@
+<?php /** @var array $args */ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Developer profile</title>
+    <title><?php echo $args['title']; ?></title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
 <header>
@@ -17,7 +19,7 @@
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="/">
-                        <img src="../assets/images/mywork-logo-2.png" alt="" width="100" height="100">
+                        <img src="/assets/images/mywork-logo-2.png" alt="" width="100" height="100">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

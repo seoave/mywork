@@ -17,7 +17,9 @@ class Authorization
         }
 
         if (static::userExists($email)) {
-            return $user->getPassword() === md5($password . $user->getSalt());
+            if ($user->getPassword() === md5($password . $user->getSalt())) {
+                return $user->getRole();
+            }
         }
         return false;
     }

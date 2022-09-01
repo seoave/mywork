@@ -6,6 +6,8 @@ namespace App\Controller;
 
 class AbstractController
 {
+    private array $pageAttributes;
+
     protected const TEMPLATE_EXT = ['php', 'html'];
 
     public function render(string $templateName, array $args = []): string

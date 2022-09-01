@@ -6,9 +6,19 @@ namespace App\Controller;
 
 class HomePageController extends AbstractController
 {
-    public function getHomePage()
+    protected array $pageAttributes;
+
+    public function __construct()
     {
-        return $this->render('home');
+        $pageAttributes = [
+            'title' => 'HomePage'
+        ];
+
+        $this->pageAttributes = $pageAttributes;
     }
 
+    public function getHomePage()
+    {
+        return $this->render('home', $this->pageAttributes);
+    }
 }
