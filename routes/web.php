@@ -36,6 +36,12 @@ return [
             'controller' => \App\Controller\HomePageController::class,
             'method' => 'getHomePage'
         ]
+    ],
+    '/404' => [
+        'get' => [
+            'controller' => \App\Controller\Page404Controller::class,
+            'method' => 'get404Page'
+        ]
     ]
 ];
 

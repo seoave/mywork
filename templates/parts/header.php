@@ -16,7 +16,7 @@
         <div class="row">
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="/">
                         <img src="../assets/images/mywork-logo-2.png" alt="" width="100" height="100">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -27,7 +27,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                <a class="nav-link active" aria-current="page" href="/">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Link</a>
@@ -55,8 +55,8 @@
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
                         <div class="btn-group ms-2" role="group" aria-label="Basic mixed styles example">
-                            <button type="button" class="btn btn-outline-success">Login</button>
-                            <button type="button" class="btn btn-outline-primary">Register</button>
+                            <a href="/login" type="button" class="btn btn-outline-success">Login</a>
+                            <a href="/registration" type="button" class="btn btn-outline-primary">Register</a>
                         </div>
                     </div>
                 </div>
