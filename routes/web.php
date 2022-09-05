@@ -42,6 +42,18 @@ return [
             'controller' => \App\Controller\Page404Controller::class,
             'method' => 'get404Page'
         ]
+    ],
+    '/admin' => [
+        'get' => [
+            'controller' => \App\Controller\DashboardController::class,
+            'method' => 'getDashboardPage'
+        ]
+    ],
+    '/developer' => [
+        'get' => [
+            'controller' => \App\Controller\DeveloperProfilePageController::class,
+            'method' => 'getDeveloperProfilePage'
+        ]
     ]
 ];
 

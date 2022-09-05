@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Authorization;
+use App\Redirection;
 
 class LoginController extends AbstractController
 {
-    private array $pageAttributes;
+    protected array $pageAttributes;
 
     public function __construct()
     {
@@ -35,7 +36,7 @@ class LoginController extends AbstractController
         return $this->render('login', $this->getPageAttributes());
     }
 
-    public function sendLoginForm()
+    public function sendLoginForm(): string
     {
         $loginEmail = trim($_POST['loginEmail']);
         $loginPassword = trim($_POST['loginPassword']);
@@ -45,10 +46,24 @@ class LoginController extends AbstractController
             return $this->render('login', $this->getPageAttributes());
         }
 
-        if (Authorization::authorization($loginEmail, $loginPassword)) {
-            return 'Pass is ok';
+        $userRole = Authorization::authorization($loginEmail, $loginPassword);
+
+        if ($userRole) {
+            switch ($userRole) {
+                case 'registered':
+                case 'administrator':
+                    Redirection::redirectTo('/admin');
+                    break;
+                case 'recruiter':
+                    $controller = new RecruiterProfilePageController();
+                    echo $controller->getRecruiterProfilePage();
+                    break;
+                case 'candidate':
+                    Redirection::redirectTo('/developer');
+                    break;
+            }
         } else {
-            $this->pageAttributes['loginMessage'] = 'Your email does not exists or password is wrong. 
+            $this->pageAttributes['loginMessage'] = 'Your email does not exist or password is wrong. 
             Repeat or <a href="/registration">Register</a>';
             return $this->render('login', $this->getPageAttributes());
         }

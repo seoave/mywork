@@ -7,7 +7,7 @@ use App\Repository\JsonRepository;
 
 class Authorization
 {
-    public static function authorization(string $email, string $password): bool
+    public static function authorization(string $email, string $password): string|bool
     {
         $repository = new JsonRepository(Configuration::getParameter('user_db'));
         /** @var User $user */
