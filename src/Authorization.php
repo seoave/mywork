@@ -17,7 +17,11 @@ class Authorization
         }
 
         if (static::userExists($email)) {
-            if ($user->getPassword() === md5($password . $user->getSalt())) {
+            if ($user->getPassword() === md5($password . $user->getSalt())) { // TODO separate method
+                session_start();
+                $_SESSION['userId'] = $user->getId();
+                $_SESSION['userName'] = $user->getName();
+                $_SESSION['userRole'] = $user->getRole();
                 return $user->getRole();
             }
         }

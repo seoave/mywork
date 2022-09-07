@@ -18,6 +18,7 @@ class AbstractController
             $fileName = $basePath . $templateName . '.' . $ext;
             if (file_exists($fileName)) {
                 ob_start();
+                session_start();
                 include $fileName;
                 $view = ob_get_contents();
                 ob_end_clean();

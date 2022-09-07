@@ -54,6 +54,12 @@ return [
             'controller' => \App\Controller\DeveloperProfilePageController::class,
             'method' => 'getDeveloperProfilePage'
         ]
+    ],
+    '/logout' => [
+        'get' => [
+            'controller' => \App\Controller\LogoutController::class,
+            'method' => 'getLogout'
+        ]
     ]
 ];
 
