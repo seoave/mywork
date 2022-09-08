@@ -4,15 +4,15 @@ namespace App\Model;
 
 class Applicant extends User
 {
-    private string $surname;
+    private string $lastName;
 
-    public function getSurname(): string
+    public function getLastName(): string
     {
-        return $this->surname;
+        return $this->lastName;
     }
 
-    public function setSurname(string $surname): void
+    public function setLastName(string $lastName): void
     {
-        $this->surname = $surname;
+        $this->lastName = $lastName;
     }
 }

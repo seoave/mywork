@@ -5,8 +5,6 @@ D
 src/Model/Resume.php,2\e\2e4a682cb3e324287517a46f161f8f9098c911ca
 J
 templates/parts/footer.php,5\0\5072dfa843013c2ae607a87fbf6bebb3252132e0
-G
-src/Model/Applicant.php,c\d\cdc2f214e885827ca59daa2607440fe6742f2dcd
 U
 %src/Controller/Api/UserController.php,1\4\1484ad6f0f0c3a4381d4aa2ef68c3490ded95fe0
 E
@@ -16,8 +14,6 @@ E
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 U
 %src/Controller/RegisterController.php,4\3\43bab7b8928d7eec910e5a06b24c0b522726cb8f
-=
-composer.json,3\9\3957b91a0d8450cea0115cfd5af69eac90d75897
 Q
 !src/Repository/JsonRepository.php,3\d\3d17bcaff5425d06ddd706f06f907635c3c161df
 E
@@ -42,8 +38,6 @@ G
 templates/dashboard.php,9\9\995af14896b79a74dd2fe772a3ee73d4128a65eb
 B
 src/Model/User.php,d\4\d4f69acbe61f8c37c042a4720b9f43fbd9dfaa85
-=
-db/users.json,c\2\c21291dde31e8ba19d302cbde523b6176d81fdcf
 B
 templates/home.php,9\5\95a746e2f7ab1a448a7e87f98f9fa2de72b1a84d
 G
