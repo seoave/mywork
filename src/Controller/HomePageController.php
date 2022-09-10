@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\DI\Container;
+
 class HomePageController extends AbstractController
 {
     protected array $pageAttributes;
@@ -17,8 +19,10 @@ class HomePageController extends AbstractController
         $this->pageAttributes = $pageAttributes;
     }
 
-    public function getHomePage()
+    public function getHomePage(): string
     {
+        $userRepository = Container::getInstance()->getUserRepository();
+        var_dump($userRepository->findAll());
         return $this->render('home', $this->pageAttributes);
     }
 }
