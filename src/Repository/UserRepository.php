@@ -32,8 +32,13 @@ class UserRepository extends BasePdoRepository
     {
         $statement = $this->pdo->prepare('SELECT * FROM users WHERE email = :email');
         $statement->execute(['email' => $email]);
+        $userArray = $statement->fetch(\PDO::FETCH_ASSOC);
 
-        return $statement->fetch(\PDO::FETCH_ASSOC) ?? null;
+        if (! $userArray) {
+            return null;
+        }
+
+        return $this->transformtoModel($userArray);
     }
 
     public function create(ModelInterface $model): ?ModelInterface
@@ -58,5 +63,11 @@ class UserRepository extends BasePdoRepository
         );
 
         return $model;
+    }
+
+    protected function getTableName(): string
+    {
+        // TODO: Implement getTableName() method.
+        return 'users';
     }
 }

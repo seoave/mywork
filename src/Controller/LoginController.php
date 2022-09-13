@@ -46,7 +46,9 @@ class LoginController extends AbstractController
             return $this->render('login', $this->getPageAttributes());
         }
 
+
         $userRole = Authorization::authorization($loginEmail, $loginPassword);
+        var_dump(Authorization::dbAuth($loginEmail, $loginPassword));
 
         if ($userRole) {
             switch ($userRole) {

@@ -38,8 +38,6 @@ a
 	.htaccess,f\1\f14dd8fe84b7e99eb63debbf029152463832e7ad
 >
 routes/web.php,6\b\6b9a783d9b43fee50fd28f56dbd1856d2608f305
-S
-#src/Controller/LogoutController.php,d\7\d75fd1eb26dc87c0a96d98177a1908c6621bc429
 C
 templates/login.php,8\2\82a84f00e1b6ccca4c28729e2f9709b17ba4db07
 U

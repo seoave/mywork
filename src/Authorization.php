@@ -38,4 +38,15 @@ class Authorization
         }
         return true;
     }
+
+    public static function dbAuth(string $email, string $password): ?string
+    {
+        // find user email
+        // if null - no user, go register
+        // if exists check password hash
+        // if match - return user
+        // else return null
+
+        return 'dbAuth method';
+    }
 }
