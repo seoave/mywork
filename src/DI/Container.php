@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\DI;
 
-use App\Repository\BasePdoRepository;
 use App\Repository\JsonRepository;
 use App\Repository\RepositoryInterface;
 use App\Repository\UserRepository;

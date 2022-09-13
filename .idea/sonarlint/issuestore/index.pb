@@ -12,8 +12,6 @@ E
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-U
-%src/Controller/RegisterController.php,4\3\43bab7b8928d7eec910e5a06b24c0b522726cb8f
 E
 templates/page404.php,6\c\6cb89d0a1afc134a0863814bbc93d092d36d29f5
 T
@@ -38,16 +36,10 @@ a
 1src/Controller/DeveloperProfilePageController.php,9\a\9affd3101eedf333f9db658618d6f392b14163f8
 9
 	.htaccess,f\1\f14dd8fe84b7e99eb63debbf029152463832e7ad
-R
-"src/Controller/LoginController.php,3\7\3752fbffcbb946366b35fcaa7e54210c60429249
 >
 routes/web.php,6\b\6b9a783d9b43fee50fd28f56dbd1856d2608f305
-E
-src/Authorization.php,7\a\7a82830ed3223940c700e7dd30a1ad962bca7858
 S
 #src/Controller/LogoutController.php,d\7\d75fd1eb26dc87c0a96d98177a1908c6621bc429
-J
-templates/parts/header.php,d\0\d0da954dfc1ed4ed536bb60b6a2f57d74eccec03
 C
 templates/login.php,8\2\82a84f00e1b6ccca4c28729e2f9709b17ba4db07
 U

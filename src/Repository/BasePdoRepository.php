@@ -9,7 +9,7 @@ use App\Model\ModelInterface;
 
 abstract class BasePdoRepository implements RepositoryInterface
 {
-    private \PDO $pdo;
+    protected \PDO $pdo;
 
     public function __construct()
     {
@@ -18,14 +18,13 @@ abstract class BasePdoRepository implements RepositoryInterface
 
     public function findAll(): array
     {
-        $statement = $this->pdo->query('SELECT * FROM users');
+        $statement = $this->pdo->query('SELECT * FROM ' . $this->getTableName());
         $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
         $users = [];
         foreach ($results as $userFromDB) {
             $users[] = $this->transformtoModel($userFromDB);
         }
 
-        var_dump($users);
         return $users;
     }
 
@@ -52,4 +51,6 @@ abstract class BasePdoRepository implements RepositoryInterface
     abstract protected function transformtoDb(ModelInterface $model): array;
 
     abstract protected function transformtoModel(array $data): ModelInterface;
+
+    abstract protected function getTableName(): string;
 }
