@@ -11,4 +11,24 @@ interface ModelInterface
     public function toStorage(): array;
 
     public static function createFromStorage(array $data): self;
+
+    public function getName(): string;
+
+    public function getEmail(): string;
+
+    public function getRole(): string;
+
+    public function getSalt(): string;
+
+    public function getPassword(): string;
+
+    public function getBirthday(): ?\DateTime;
+
+    public function getCountry(): ?string;
+
+    public function getCity(): ?string;
+
+    public function getPhone(): string;
+
+    public function getPhoto(): string;
 }

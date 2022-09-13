@@ -1,7 +1,9 @@
 <?php
 /** @var array $args */
 // TODO align right menu
+echo '$_SESSION = ';
 var_dump($_SESSION);
+echo '<br>';
 ?>
 
 <!DOCTYPE html>

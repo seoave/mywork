@@ -7,7 +7,7 @@ namespace App\Repository;
 use App\Model\ModelInterface;
 use App\Model\User;
 
-class JsonRepository
+class JsonRepository implements RepositoryInterface
 {
     public function __construct(
         private string $filePath
@@ -82,13 +82,15 @@ class JsonRepository
         return $model;
     }
 
-    public function update($model): object
+    public function update($model): ModelInterface
     {
         // TODO
+        return var_export('update');
     }
 
-    public function delete($id)
+    public function delete(mixed $id): ?ModelInterface
     {
         //TODO
+        return var_export('update');
     }
 }

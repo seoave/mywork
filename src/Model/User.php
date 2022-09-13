@@ -119,12 +119,12 @@ class User implements ModelInterface
         $this->birthday = $birthday;
     }
 
-    public function getPassword(): ?string
+    public function getPassword(): string
     {
         return $this->password;
     }
 
-    public function setPassword(?string $plainPassword): self
+    public function setPassword(string $plainPassword): self
     {
         if ($this->salt === null) {
             $this->setSalt(Str::random(13));
@@ -135,7 +135,7 @@ class User implements ModelInterface
         return $this;
     }
 
-    public function getSalt(): ?string
+    public function getSalt(): string
     {
         return $this->salt;
     }

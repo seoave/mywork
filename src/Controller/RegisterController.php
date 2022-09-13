@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Authorization;
 use App\Configuration;
+use App\DI\Container;
 use App\Model\User;
 use App\Repository\JsonRepository;
 
@@ -18,7 +19,6 @@ class RegisterController extends AbstractController
 
     public function sendRegisterForm(): void
     {
-        // var_export($_POST);
         $name = trim($_POST['registrationName'] ?? null);
         $email = trim($_POST['registrationEmail'] ?? null);
         $plainPassword = trim($_POST['registrationPassword'] ?? null);
@@ -30,8 +30,8 @@ class RegisterController extends AbstractController
 
         if (Authorization::userExists($email)) {
             echo 'This email is using by existing user. <a href="/login">Login, please.</a>';
-            // header("Location: /login");
-            // exit();
+            header("Location: /login");
+            exit();
         } else {
             $newUser = new User($name, $email);
             $newUser->setPassword($plainPassword);
@@ -39,6 +39,9 @@ class RegisterController extends AbstractController
 
             $repository = new JsonRepository(Configuration::getParameter('user_db'));
             $repository->create($newUser);
+
+            $userRepository = Container::getInstance()->getUserRepository();
+            $userRepository->create($newUser);
 
             // header("Location: /candidate/profile/{profileId}");
             // exit();
