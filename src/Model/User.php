@@ -64,7 +64,7 @@ class User implements ModelInterface
         $this->city = $city;
     }
 
-    public function getPhone(): string
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
@@ -74,7 +74,7 @@ class User implements ModelInterface
         $this->phone = $phone;
     }
 
-    public function getPhoto(): string
+    public function getPhoto(): ?string
     {
         return $this->photo;
     }
@@ -124,7 +124,14 @@ class User implements ModelInterface
         return $this->password;
     }
 
-    public function setPassword(string $plainPassword): self
+    public function setPassword(string $passwordHash): self
+    {
+        $this->password = $passwordHash;
+
+        return $this;
+    }
+
+    public function setNewPassword(string $plainPassword): self
     {
         if ($this->salt === null) {
             $this->setSalt(Str::random(13));
@@ -135,7 +142,7 @@ class User implements ModelInterface
         return $this;
     }
 
-    public function getSalt(): string
+    public function getSalt(): ?string
     {
         return $this->salt;
     }

@@ -4,8 +4,15 @@ namespace App\Controller;
 
 class Page404Controller extends AbstractController
 {
-    public function get404Page()
+    protected array $pageAttributes;
+
+    public function __construct()
     {
-        return $this->render('page404');
+        $this->pageAttributes = ['title' => 'Page 404'];
+    }
+
+    public function get404Page(): string
+    {
+        return $this->render('page404', $this->pageAttributes);
     }
 }

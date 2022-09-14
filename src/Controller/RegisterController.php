@@ -4,59 +4,53 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Authorization;
-use App\Configuration;
 use App\DI\Container;
 use App\Model\User;
-use App\Repository\JsonRepository;
 
 class RegisterController extends AbstractController
 {
-    public function getRegisterPage()
+    protected array $pageAttributes;
+
+    public function __construct()
     {
-        return $this->render('registration');
+        $this->pageAttributes = ['title' => 'Registration'];
     }
 
-    public function sendRegisterForm(): void
+    public function getRegisterPage(): string
+    {
+        return $this->render('registration', $this->pageAttributes);
+    }
+
+    public function sendRegisterForm(): ?string
     {
         $name = trim($_POST['registrationName'] ?? null);
         $email = trim($_POST['registrationEmail'] ?? null);
         $plainPassword = trim($_POST['registrationPassword'] ?? null);
         $role = trim($_POST['registrationRole'] ?? null);
 
-        if (! $name || ! $email || ! $plainPassword || ! $role) {
-            echo 'Fill all fields';
+
+        if (empty($name) && empty($email) && empty($plainPassword)) {
+            $this->pageAttributes['registerMessage'] = 'Fill all fields';
+            return $this->render('registration', $this->pageAttributes);
         }
 
-        if (Authorization::userExists($email)) {
-            echo 'This email is using by existing user. <a href="/login">Login, please.</a>';
-            header("Location: /login");
-            exit();
+        $userRepository = Container::getInstance()->getUserRepository();
+
+        if ($userRepository->findByEmail($email)) {
+            $this->pageAttributes['registerMessage'] = 'This email is using by existing user. <a href="/login">Login, please.</a>';
+            return $this->render('registration', $this->pageAttributes);
         } else {
             $newUser = new User($name, $email);
-            $newUser->setPassword($plainPassword);
+            $newUser->setNewPassword($plainPassword);
             $newUser->setRole($role);
-
-            $repository = new JsonRepository(Configuration::getParameter('user_db'));
-            $repository->create($newUser);
-
-            $userRepository = Container::getInstance()->getUserRepository();
             $userRepository->create($newUser);
-
-            // header("Location: /candidate/profile/{profileId}");
-            // exit();
         }
 
-        if (isset($newUser)) {
-            if ($newUser?->getRole() === 'candidate') {
-                echo 'Redirect to your candidate profile';
-                // header("Location: /candidate/profile/{profileId}");
-                // exit();
-            } else {
-                echo 'Redirect to your recruiter profile';
-                // header("Location: /candidate/profile/{profileId}");
-                // exit();
-            }
+        if ($userRepository->create($newUser)) {
+            $this->pageAttributes['registerMessage'] = 'You are registered. <a href="/login">Login, please.</a>';
+            return $this->render('registration', $this->pageAttributes);
         }
+
+        return null;
     }
 }
