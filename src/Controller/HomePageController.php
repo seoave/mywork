@@ -22,7 +22,9 @@ class HomePageController extends AbstractController
     public function getHomePage(): string
     {
         $userRepository = Container::getInstance()->getUserRepository();
-        var_dump($userRepository->findAll());
+
+        // var_dump($userRepository->findAll());
+        //var_dump($userRepository->findByEmail('bernard@mail.ww'));
         return $this->render('home', $this->pageAttributes);
     }
 }

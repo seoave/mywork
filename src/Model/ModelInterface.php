@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Model;
 
+use DateTime;
+
 interface ModelInterface
 {
     public function setId(?int $id): self;
@@ -18,17 +20,17 @@ interface ModelInterface
 
     public function getRole(): string;
 
-    public function getSalt(): string;
+    public function getSalt(): ?string;
 
     public function getPassword(): string;
 
-    public function getBirthday(): ?\DateTime;
+    public function getBirthday(): ?DateTime;
 
     public function getCountry(): ?string;
 
     public function getCity(): ?string;
 
-    public function getPhone(): string;
+    public function getPhone(): ?string;
 
-    public function getPhoto(): string;
+    public function getPhoto(): ?string;
 }

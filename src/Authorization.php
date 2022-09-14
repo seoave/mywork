@@ -2,40 +2,27 @@
 
 namespace App;
 
-use App\Model\User;
-use App\Repository\JsonRepository;
+use App\DI\Container;
 
 class Authorization
 {
-    public static function authorization(string $email, string $password): string|bool
+    public static function dbAuth(string $email, string $password): ?string
     {
-        $repository = new JsonRepository(Configuration::getParameter('user_db'));
-        /** @var User $user */
-        $user = $repository->findByEmail($email);
+        $userRepository = Container::getInstance()->getUserRepository();
+        $user = $userRepository->findByEmail($email);
+
         if ($user === null) {
-            return false;
+            return null;
         }
 
-        if (static::userExists($email)) {
-            if ($user->getPassword() === md5($password . $user->getSalt())) { // TODO separate method
-                session_start();
-                $_SESSION['userId'] = $user->getId();
-                $_SESSION['userName'] = $user->getName();
-                $_SESSION['userRole'] = $user->getRole();
-                return $user->getRole();
-            }
+        if ($user->getPassword() === md5($password . $user->getSalt())) {
+            session_start();
+            $_SESSION['userId'] = $user->getId();
+            $_SESSION['userName'] = $user->getName();
+            $_SESSION['userRole'] = $user->getRole();
+            return $user->getRole();
         }
-        return false;
-    }
 
-    public static function userExists(string $email): bool
-    {
-        $repository = new JsonRepository(Configuration::getParameter('user_db'));
-        /** @var User $user */
-        $user = $repository->findByEmail($email);
-        if ($user === null) {
-            return false;
-        }
-        return true;
+        return null;
     }
 }

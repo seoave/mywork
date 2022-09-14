@@ -1,8 +1,18 @@
-<?php require_once __DIR__ . '/parts/header.php'; ?>
+<?php
+/** @var array $args */
+require_once __DIR__ . '/parts/header.php';
+?>
 <main class="pt-5">
     <div class="container">
         <div class="row">
-            <h1 class="text-center">Registration</h1>
+            <h1 class="text-center"><?php echo $args['title']; ?></h1>
+
+            <?php if (isset($args['registerMessage'])): ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php echo $args['registerMessage']; ?>
+                </div>
+            <?php endif; ?>
+
             <form id="registration" action="/registration" method="post">
                 <input name="registrationName" type="text" class="form-control mb-3" placeholder="Enter your name">
                 <input name="registrationEmail" type="email" class="form-control mb-3" placeholder="Enter your email">
@@ -14,7 +24,7 @@
                     </label>
                 </div>
                 <div class="form-check mb-3">
-                    <input class="form-check-input" type="radio" name="registration-role" id="select-hr" value="recruiter">
+                    <input class="form-check-input" type="radio" name="registrationRole" id="select-hr" value="recruiter">
                     <label class="form-check-label" for="select-hr">
                         Recruiter
                     </label>

@@ -21,6 +21,8 @@ class UserRepository extends BasePdoRepository
         $user = new User($data['name'], $data['email']);
         $user->setId((int) $data['id']);
         $user->setRole($data['role']);
+        $user->setSalt($data['salt']);
+        $user->setPassword($data['password']);
         $user->setCountry($data['country']);
         $user->setCity($data['city']);
         $user->setPhone($data['phone']);
@@ -32,15 +34,20 @@ class UserRepository extends BasePdoRepository
     {
         $statement = $this->pdo->prepare('SELECT * FROM users WHERE email = :email');
         $statement->execute(['email' => $email]);
+        $userArray = $statement->fetch(\PDO::FETCH_ASSOC);
 
-        return $statement->fetch(\PDO::FETCH_ASSOC) ?? null;
+        if (! $userArray) {
+            return null;
+        }
+
+        return $this->transformtoModel($userArray);
     }
 
     public function create(ModelInterface $model): ?ModelInterface
     {
         $statement = $this->pdo->prepare(
-            'INSERT INTO :table (name, email, role, salt, password, birthday, country, city, phone, photo) 
-                   VALUES (:name,:email, :role, :salt,:password,:birthday,:country,:city,:phone,:photo)'
+            'INSERT INTO ' . $this->getTableName() . ' (name, email, role, salt, password, birthday, country, city, phone, photo) 
+                   VALUES (:name, :email, :role, :salt, :password, :birthday, :country, :city, :phone, :photo)'
         );
         $statement->execute(
             [
@@ -58,5 +65,11 @@ class UserRepository extends BasePdoRepository
         );
 
         return $model;
+    }
+
+    protected function getTableName(): string
+    {
+        // TODO: Implement getTableName() method.
+        return 'users';
     }
 }
