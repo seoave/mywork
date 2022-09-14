@@ -21,6 +21,8 @@ class UserRepository extends BasePdoRepository
         $user = new User($data['name'], $data['email']);
         $user->setId((int) $data['id']);
         $user->setRole($data['role']);
+        $user->setSalt($data['salt']);
+        $user->setPassword($data['password']);
         $user->setCountry($data['country']);
         $user->setCity($data['city']);
         $user->setPhone($data['phone']);
@@ -44,8 +46,8 @@ class UserRepository extends BasePdoRepository
     public function create(ModelInterface $model): ?ModelInterface
     {
         $statement = $this->pdo->prepare(
-            'INSERT INTO :table (name, email, role, salt, password, birthday, country, city, phone, photo) 
-                   VALUES (:name,:email, :role, :salt,:password,:birthday,:country,:city,:phone,:photo)'
+            'INSERT INTO ' . $this->getTableName() . ' (name, email, role, salt, password, birthday, country, city, phone, photo) 
+                   VALUES (:name, :email, :role, :salt, :password, :birthday, :country, :city, :phone, :photo)'
         );
         $statement->execute(
             [

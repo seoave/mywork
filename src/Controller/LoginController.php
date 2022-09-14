@@ -13,11 +13,7 @@ class LoginController extends AbstractController
 
     public function __construct()
     {
-        $pageAttributes = [
-            'title' => 'Login'
-        ];
-
-        $this->pageAttributes = $pageAttributes;
+        $this->pageAttributes = ['title' => 'Login'];
     }
 
     public function getPageAttributes(): array
@@ -36,7 +32,7 @@ class LoginController extends AbstractController
         return $this->render('login', $this->getPageAttributes());
     }
 
-    public function sendLoginForm(): string
+    public function sendLoginForm(): ?string
     {
         $loginEmail = trim($_POST['loginEmail']);
         $loginPassword = trim($_POST['loginPassword']);
@@ -46,9 +42,7 @@ class LoginController extends AbstractController
             return $this->render('login', $this->getPageAttributes());
         }
 
-
-        $userRole = Authorization::authorization($loginEmail, $loginPassword);
-        var_dump(Authorization::dbAuth($loginEmail, $loginPassword));
+        $userRole = Authorization::dbAuth($loginEmail, $loginPassword);
 
         if ($userRole) {
             switch ($userRole) {
@@ -70,6 +64,6 @@ class LoginController extends AbstractController
             return $this->render('login', $this->getPageAttributes());
         }
 
-        return $this->render('login', $this->pageAttributes);
+        return null;
     }
 }
