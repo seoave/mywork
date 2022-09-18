@@ -55,7 +55,8 @@ class LoginController extends AbstractController
                     echo $controller->getRecruiterProfilePage();
                     break;
                 case 'candidate':
-                    Redirection::redirectTo('/developer');
+                    $controller = new DeveloperProfilePageController();
+                    echo $controller->getDeveloperProfilePage();
                     break;
             }
         } else {

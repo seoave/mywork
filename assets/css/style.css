@@ -96,8 +96,27 @@ h4 {
 }
 
 #registration {
-    margin: 0 auto;
     max-width: 525px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin: 40px auto;
+}
+
+ul.account-menu {
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 60px;
+    padding-bottom: 24px;
+}
+
+ul.account-menu li {
+    display: inline-block;
+    margin-right: 3px;
+    padding-right: 5px;
+}
+
+ul.account-menu li:not(:last-child) {
+    border-right: 1px solid #000;
+}
+
+footer {
+    padding-top: 45px;
 }
