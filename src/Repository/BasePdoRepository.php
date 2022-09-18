@@ -28,15 +28,9 @@
             return $users;
         }
 
-        public function create(ModelInterface $model): ?ModelInterface
-        {
-            // TODO: Implement create() method.
-        }
+        abstract public function create(ModelInterface $model): ?ModelInterface;
 
-        public function update(ModelInterface $model): ?ModelInterface
-        {
-            // TODO: Implement update() method.
-        }
+        abstract public function update(ModelInterface $model): ?ModelInterface;
 
         abstract public function delete($id): ?ModelInterface;
 

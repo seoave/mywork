@@ -1,141 +1,139 @@
 <?php
 
-namespace App\Model;
+    namespace App\Model;
 
-use DateTime;
-
-class Resume
-{
-    private string $name;
-    private string $surname;
-    private int $experienceTerm;
-    private string $experience;
-    private string $wishPosition;
-    private string $wishSalary;
-    private array $wishWorkTypes;
-    private array $languages;
-    private array $skills;
-    private string $specialization;
-    private array $wishCountries;
-    private array $wishCities;
-
-    public function getName(): string
+    class Resume
     {
-        return $this->name;
-    }
+        private string $name;
+        private string $surname;
+        private int $experienceTerm;
+        private string $experience;
+        private string $position;
+        private int $salary;
+        private array $jobTypes;
+        private string $englishLevel;
+        private array $skills;
+        private string $category;
+        private string $country;
+        private string $city;
 
-    public function setName(string $name): void
-    {
-        $this->name = $name;
-    }
+        public function getName(): string
+        {
+            return $this->name;
+        }
 
-    public function getSurname(): string
-    {
-        return $this->surname;
-    }
+        public function setName(string $name): void
+        {
+            $this->name = $name;
+        }
 
-    public function setSurname(string $surname): void
-    {
-        $this->surname = $surname;
-    }
+        public function getSurname(): string
+        {
+            return $this->surname;
+        }
 
-    public function getExperience(): string
-    {
-        return $this->experience;
-    }
+        public function setSurname(string $surname): void
+        {
+            $this->surname = $surname;
+        }
 
-    public function setExperience(string $experience): void
-    {
-        $this->experience = $experience;
-    }
+        public function getExperience(): string
+        {
+            return $this->experience;
+        }
 
-    public function getWishPosition(): string
-    {
-        return $this->wishPosition;
-    }
+        public function setExperience(string $experience): void
+        {
+            $this->experience = $experience;
+        }
 
-    public function setWishPosition(string $wishPosition): void
-    {
-        $this->wishPosition = $wishPosition;
-    }
+        public function getPosition(): string
+        {
+            return $this->position;
+        }
 
-    public function getWishSalary(): string
-    {
-        return $this->wishSalary;
-    }
+        public function sePosition(string $position): void
+        {
+            $this->position = $position;
+        }
 
-    public function setWishSalary(string $wishSalary): void
-    {
-        $this->wishSalary = $wishSalary;
-    }
+        public function getSalary(): string
+        {
+            return $this->salary;
+        }
 
-    public function getWishWorkTypes(): array
-    {
-        return $this->wishWorkTypes;
-    }
+        public function setSalary(string $salary): void
+        {
+            $this->salary = $salary;
+        }
 
-    public function setWishWorkTypes(array $wishWorkTypes): void
-    {
-        $this->wishWorkTypes = $wishWorkTypes;
-    }
+        public function getJobTypes(): array
+        {
+            return $this->jobTypes;
+        }
 
-    public function getLanguages(): array
-    {
-        return $this->languages;
-    }
+        public function setJobTypes(array $jobTypes): void
+        {
+            $this->jobTypes = $jobTypes;
+        }
 
-    public function setLanguages(array $languages): void
-    {
-        $this->languages = $languages;
-    }
+        public function getEnglishLevel(): string
+        {
+            return $this->englishLevel;
+        }
 
-    public function getSkills(): array
-    {
-        return $this->skills;
-    }
+        public function setEnglishLevel(array $languages): void
+        {
+            $this->languages = $languages;
+        }
 
-    public function setSkills(array $skills): void
-    {
-        $this->skills = $skills;
-    }
+        public function getSkills(): array
+        {
+            return $this->skills;
+        }
 
-    public function getSpecialization(): string
-    {
-        return $this->specialization;
-    }
+        public function setSkills(array $skills): void
+        {
+            $this->skills = $skills;
+        }
 
-    public function setSpecialization(string $specialization): void
-    {
-        $this->specialization = $specialization;
-    }
+        public function getCategory(): string
+        {
+            return $this->category;
+        }
 
-    public function getWishCountries(): array
-    {
-        return $this->wishCountries;
-    }
+        public function setCategory(string $category): void
+        {
+            $this->category = $category;
+        }
 
-    public function setWishCountries(array $wishCountries): void
-    {
-        $this->wishCountries = $wishCountries;
-    }
+        public function getCountry(): array
+        {
+            return $this->country;
+        }
 
-    public function getWishCities(): array
-    {
-        return $this->wishCities;
-    }
+        public function setCountry(array $country): void
+        {
+            $this->country = $country;
+        }
 
-    public function setWishCities(array $wishCities): void
-    {
-        $this->wishCities = $wishCities;
-    }
+        public function getCity(): array
+        {
+            return $this->city;
+        }
 
-    public function getExperienceTerm(): int
-    {
-        return $this->experienceTerm;
-    }
+        public function setCity(array $city): void
+        {
+            $this->city = $city;
+        }
 
-    public function setExperienceTerm(int $experienceTerm): void
-    {
-        $this->experienceTerm = $experienceTerm;
+        public function getExperienceTerm(): int
+        {
+            return $this->experienceTerm;
+        }
+
+        public function setExperienceTerm(int $experienceTerm): void
+        {
+            $this->experienceTerm = $experienceTerm;
+        }
     }
-}
