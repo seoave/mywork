@@ -49,10 +49,20 @@ return [
             'method' => 'getDashboardPage'
         ]
     ],
-    '/developer' => [
+    '/account/developer' => [
         'get' => [
             'controller' => \App\Controller\DeveloperProfilePageController::class,
             'method' => 'getDeveloperProfilePage'
+        ],
+        'post' => [
+            'controller' => \App\Controller\DeveloperProfilePageController::class,
+            'method' => 'sendEditDeveloperProfile'
+        ]
+    ],
+    '/developer' => [
+        'get' => [
+            'controller' => \App\Controller\DeveloperProfilePageController::class,
+            'method' => 'getDeveloperPublicProfilePage'
         ]
     ],
     '/logout' => [
@@ -62,4 +72,3 @@ return [
         ]
     ]
 ];
-

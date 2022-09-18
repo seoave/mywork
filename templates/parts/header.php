@@ -1,6 +1,5 @@
 <?php
 /** @var array $args */
-// TODO align right menu
 //echo '$_SESSION = ';
 //var_dump($_SESSION);
 //echo '<br>';
@@ -74,21 +73,11 @@
                                 <a href="/registration" type="button" class="btn btn-outline-primary">Register</a>
                             </div>
                         <?php else: ?>
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <ul class="navbar-nav mb-2 mb-lg-0">
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Hi, <?php echo $_SESSION['userName']; ?>!</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                       aria-expanded="false">
-                                        Cabinet
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">My profile</a></li>
-                                        <li><a class="dropdown-item" href="#">My CVs</a></li>
-                                        <li><a class="dropdown-item" href="#">Messages (0)</a></li>
-                                    </ul>
-                                </li>
+                                <li class="nav-item"><a class="nav-link" href="#">Message (0)</a></li>
                             </ul>
                             <a href="/logout" type="button" class="btn btn-outline-success">Logout</a>
                         <?php endif; ?>

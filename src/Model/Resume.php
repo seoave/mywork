@@ -8,7 +8,7 @@ class Resume
 {
     private string $name;
     private string $surname;
-    private DateTime $birthday;
+    private int $experienceTerm;
     private string $experience;
     private string $wishPosition;
     private string $wishSalary;
@@ -37,16 +37,6 @@ class Resume
     public function setSurname(string $surname): void
     {
         $this->surname = $surname;
-    }
-
-    public function getBirthday(): DateTime
-    {
-        return $this->birthday;
-    }
-
-    public function setBirthday(DateTime $birthday): void
-    {
-        $this->birthday = $birthday;
     }
 
     public function getExperience(): string
@@ -137,5 +127,15 @@ class Resume
     public function setWishCities(array $wishCities): void
     {
         $this->wishCities = $wishCities;
+    }
+
+    public function getExperienceTerm(): int
+    {
+        return $this->experienceTerm;
+    }
+
+    public function setExperienceTerm(int $experienceTerm): void
+    {
+        $this->experienceTerm = $experienceTerm;
     }
 }
