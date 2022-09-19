@@ -51,7 +51,7 @@
                 $this->resumeRepository = new ResumeRepository();
             }
 
-            return $this->userRepository;
+            return $this->resumeRepository;
         }
 
         public static function getInstance(): self

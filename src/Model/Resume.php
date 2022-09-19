@@ -2,138 +2,158 @@
 
     namespace App\Model;
 
-    class Resume
+    class Resume implements ModelInterface
     {
-        private string $name;
-        private string $surname;
-        private int $experienceTerm;
-        private string $experience;
-        private string $position;
-        private int $salary;
-        private array $jobTypes;
-        private string $englishLevel;
-        private array $skills;
-        private string $category;
-        private string $country;
-        private string $city;
+        private int $userId;
+        private ?int $experienceTerm;
+        private ?string $experience;
+        private ?string $about;
+        private ?string $position;
+        private ?int $salary;
+        private ?array $jobTypes;
+        private ?string $englishLevel;
+        private ?array $skills;
+        private ?string $category;
+        private ?string $country;
+        private ?string $city;
 
-        public function getName(): string
+        public function __construct($userId)
         {
-            return $this->name;
+            $this->userId = $userId;
         }
 
-        public function setName(string $name): void
-        {
-            $this->name = $name;
-        }
-
-        public function getSurname(): string
-        {
-            return $this->surname;
-        }
-
-        public function setSurname(string $surname): void
-        {
-            $this->surname = $surname;
-        }
-
-        public function getExperience(): string
+        public function getExperience(): ?string
         {
             return $this->experience;
         }
 
-        public function setExperience(string $experience): void
+        public function setExperience(?string $experience): void
         {
             $this->experience = $experience;
         }
 
-        public function getPosition(): string
-        {
-            return $this->position;
-        }
-
-        public function sePosition(string $position): void
-        {
-            $this->position = $position;
-        }
-
-        public function getSalary(): string
+        public function getSalary(): ?string
         {
             return $this->salary;
         }
 
-        public function setSalary(string $salary): void
+        public function setSalary(?string $salary): void
         {
             $this->salary = $salary;
         }
 
-        public function getJobTypes(): array
+        public function getJobTypes(): ?array
         {
             return $this->jobTypes;
         }
 
-        public function setJobTypes(array $jobTypes): void
+        public function setJobTypes(?array $jobTypes): void
         {
             $this->jobTypes = $jobTypes;
         }
 
-        public function getEnglishLevel(): string
+        public function getEnglishLevel(): ?string
         {
             return $this->englishLevel;
         }
 
-        public function setEnglishLevel(array $languages): void
+        public function setEnglishLevel(?string $languages): void
         {
-            $this->languages = $languages;
+            $this->englishLevel = $languages;
         }
 
-        public function getSkills(): array
+        public function getSkills(): ?array
         {
             return $this->skills;
         }
 
-        public function setSkills(array $skills): void
+        public function setSkills(?array $skills): void
         {
             $this->skills = $skills;
         }
 
-        public function getCategory(): string
+        public function getCategory(): ?string
         {
             return $this->category;
         }
 
-        public function setCategory(string $category): void
+        public function setCategory(?string $category): void
         {
             $this->category = $category;
         }
 
-        public function getCountry(): array
+        public function getCountry(): ?string
         {
             return $this->country;
         }
 
-        public function setCountry(array $country): void
+        public function setCountry(?string $country): void
         {
             $this->country = $country;
         }
 
-        public function getCity(): array
+        public function getCity(): ?string
         {
             return $this->city;
         }
 
-        public function setCity(array $city): void
+        public function setCity(?string $city): void
         {
             $this->city = $city;
         }
 
-        public function getExperienceTerm(): int
+        public function getExperienceTerm(): ?int
         {
             return $this->experienceTerm;
         }
 
-        public function setExperienceTerm(int $experienceTerm): void
+        public function setExperienceTerm(?int $experienceTerm): void
         {
             $this->experienceTerm = $experienceTerm;
+        }
+
+        public function setId(?int $id): ModelInterface
+        {
+            // TODO: Implement setId() method.
+        }
+
+        public function toStorage(): array
+        {
+            // TODO: Implement toStorage() method.
+        }
+
+        public static function createFromStorage(array $data): ModelInterface
+        {
+            // TODO: Implement createFromStorage() method.
+        }
+
+        public function getUserId(): int
+        {
+            return $this->userId;
+        }
+
+        public function setUserId(int $userId): void
+        {
+            $this->userId = $userId;
+        }
+
+        public function getPosition(): ?string
+        {
+            return $this->position;
+        }
+
+        public function setPosition(?string $position): void
+        {
+            $this->position = $position;
+        }
+
+        public function getAbout(): ?string
+        {
+            return $this->about;
+        }
+
+        public function setAbout(?string $about): void
+        {
+            $this->about = $about;
         }
     }

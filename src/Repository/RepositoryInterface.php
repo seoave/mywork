@@ -12,8 +12,6 @@
 
         public function findById($id): ?ModelInterface;
 
-        public function findByEmail(string $email): ?ModelInterface;
-
         public function create(ModelInterface $model): ?ModelInterface;
 
         public function update(ModelInterface $model): ?ModelInterface;
