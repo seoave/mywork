@@ -1,6 +1,6 @@
 <?php
     /** @var array $args */
-    var_export($args);
+    // var_export($args);
     //    echo '$_SESSION = ';
     //    var_dump($_SESSION);
     //    echo '<br>';

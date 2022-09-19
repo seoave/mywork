@@ -10,7 +10,6 @@
 
     class ResumeRepository extends BasePdoRepository
     {
-
         protected function transformtoDb(ModelInterface $model): array
         {
             return [
@@ -33,8 +32,8 @@
         {
             $model = new Resume($data['user_id']);
             $model->setPosition($data['position']);
-            $model->setSalary($data['salary']);
-            $model->setExperienceTerm($data['experience_term']);
+            $model->setSalary((int) $data['salary']);
+            $model->setExperienceTerm((int) $data['experience_term']);
             $model->setCountry($data['country']);
             $model->setCity($data['city']);
             $model->setSkills($data['skills'] ? explode(',', $data['skills']) : null);
@@ -67,7 +66,6 @@
 
         public function update(ModelInterface $model): ?ModelInterface
         {
-            //  var_dump($model);
             $statement = $this->pdo->prepare(
                 'UPDATE resumes
                 SET position = :position, salary = :salary, experience_term = :experience_term, 

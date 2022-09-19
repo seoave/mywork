@@ -32,12 +32,12 @@
             $this->experience = $experience;
         }
 
-        public function getSalary(): ?string
+        public function getSalary(): ?int
         {
             return $this->salary;
         }
 
-        public function setSalary(?string $salary): void
+        public function setSalary(?int $salary): void
         {
             $this->salary = $salary;
         }
@@ -114,17 +114,17 @@
 
         public function setId(?int $id): ModelInterface
         {
-            // TODO: Implement setId() method.
+            die('Id');
         }
 
         public function toStorage(): array
         {
-            // TODO: Implement toStorage() method.
+            die('toStorage');
         }
 
         public static function createFromStorage(array $data): ModelInterface
         {
-            // TODO: Implement createFromStorage() method.
+            die('createFromStorage');
         }
 
         public function getUserId(): int

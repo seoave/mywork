@@ -78,7 +78,7 @@
                 $this->pageAttributes['updateDeveloperProfileMessage'] = 'Profile updated';
             }
 
-            Redirection::redirectTo('/account/developer');
+            return Redirection::redirectTo('/account/developer');
         }
 
         private function updatePageAttributes()
@@ -91,12 +91,21 @@
 
             if ($_SESSION['userId']) {
                 $currentResume = $resumeRepository->findById($_SESSION['userId']);
-                var_dump($currentResume);
+                //var_dump($currentResume);
             }
 
             $resumeArray = [];
             $resumeArray['category'] = $currentResume->getCategory();
-            $resumeArray['position'] = $currentResume->getPosition() ? $currentResume->getPosition() : '';
+            $resumeArray['position'] = $currentResume->getPosition();
+            $resumeArray['salary'] = $currentResume->getSalary();
+            $resumeArray['experienceTerm'] = $currentResume->getExperienceTerm();
+            $resumeArray['experience'] = $currentResume->getExperience();
+            $resumeArray['city'] = $currentResume->getCity();
+            $resumeArray['country'] = $currentResume->getCountry();
+            $resumeArray['about'] = $currentResume->getAbout();
+            $resumeArray['skills'] = $currentResume->getSkills();
+            $resumeArray['english'] = $currentResume->getEnglishLevel();
+            $resumeArray['jobTypes'] = $currentResume->getJobTypes();
 
             $this->pageAttributes = array_merge($this->pageAttributes, $resumeArray);
         }
