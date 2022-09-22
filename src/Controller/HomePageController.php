@@ -23,7 +23,7 @@
         {
             $userRepository = Container::getInstance()->getUserRepository();
 
-            // var_dump($userRepository->findAll());
+            var_dump($userRepository->findAll());
             //var_dump($userRepository->findByEmail('bernard@mail.ww'));
 
             $resumeRepository = Container::getInstance()->getResumeRepository();

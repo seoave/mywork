@@ -8,20 +8,25 @@
                 <article class="candidate-account">
 
                     <ul class="account-menu">
-                        <li><a href="#">Edit profile</a></li>
-                        <li><a href="#">Public profile</a></li>
+                        <li><a href="/account/developer">Edit profile</a></li>
+
+                        <?php if ($args['userId']): ?>
+                            <li>
+                                <a href="/developer/<?php echo $args['userId']; ?>" target="_blank">
+                                    Public profile
+                                </a>
+                            </li>
+                        <?php endif; ?>
+
                         <li><a href="#">Contacts, Photo, CV</a></li>
                         <li><a href="#">Edit account (remove profile, change email and password)</a></li>
                     </ul>
 
-                    <?php
-                        if (isset($args['updateDeveloperProfileMessage'])): ?>
-                            <div class="alert alert-danger" role="alert">
-                                <?php
-                                    echo $args['updateDeveloperProfileMessage']; ?>
-                            </div>
-                        <?php
-                        endif; ?>
+                    <?php if (isset($args['updateDeveloperProfileMessage'])): ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo $args['updateDeveloperProfileMessage']; ?>
+                        </div>
+                    <?php endif; ?>
 
                     <form id="edit-developer-profile" action="/account/developer" method="post" class="edit-developer-profile">
                         <div class="form-group row mb-4">
