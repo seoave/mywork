@@ -12,7 +12,7 @@
 
                         <?php if ($args['userId']): ?>
                             <li>
-                                <a href="/developer/<?php echo $args['userId']; ?>" target="_blank">
+                                <a href="/developers/<?php echo $args['userId']; ?>" target="_blank">
                                     Public profile
                                 </a>
                             </li>
