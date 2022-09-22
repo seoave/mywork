@@ -1,141 +1,159 @@
 <?php
 
-namespace App\Model;
+    namespace App\Model;
 
-use DateTime;
-
-class Resume
-{
-    private string $name;
-    private string $surname;
-    private int $experienceTerm;
-    private string $experience;
-    private string $wishPosition;
-    private string $wishSalary;
-    private array $wishWorkTypes;
-    private array $languages;
-    private array $skills;
-    private string $specialization;
-    private array $wishCountries;
-    private array $wishCities;
-
-    public function getName(): string
+    class Resume implements ModelInterface
     {
-        return $this->name;
-    }
+        private int $userId;
+        private ?int $experienceTerm;
+        private ?string $experience;
+        private ?string $about;
+        private ?string $position;
+        private ?int $salary;
+        private ?array $jobTypes;
+        private ?string $englishLevel;
+        private ?array $skills;
+        private ?string $category;
+        private ?string $country;
+        private ?string $city;
 
-    public function setName(string $name): void
-    {
-        $this->name = $name;
-    }
+        public function __construct($userId)
+        {
+            $this->userId = $userId;
+        }
 
-    public function getSurname(): string
-    {
-        return $this->surname;
-    }
+        public function getExperience(): ?string
+        {
+            return $this->experience;
+        }
 
-    public function setSurname(string $surname): void
-    {
-        $this->surname = $surname;
-    }
+        public function setExperience(?string $experience): void
+        {
+            $this->experience = $experience;
+        }
 
-    public function getExperience(): string
-    {
-        return $this->experience;
-    }
+        public function getSalary(): ?int
+        {
+            return $this->salary;
+        }
 
-    public function setExperience(string $experience): void
-    {
-        $this->experience = $experience;
-    }
+        public function setSalary(?int $salary): void
+        {
+            $this->salary = $salary;
+        }
 
-    public function getWishPosition(): string
-    {
-        return $this->wishPosition;
-    }
+        public function getJobTypes(): ?array
+        {
+            return $this->jobTypes;
+        }
 
-    public function setWishPosition(string $wishPosition): void
-    {
-        $this->wishPosition = $wishPosition;
-    }
+        public function setJobTypes(?array $jobTypes): void
+        {
+            $this->jobTypes = $jobTypes;
+        }
 
-    public function getWishSalary(): string
-    {
-        return $this->wishSalary;
-    }
+        public function getEnglishLevel(): ?string
+        {
+            return $this->englishLevel;
+        }
 
-    public function setWishSalary(string $wishSalary): void
-    {
-        $this->wishSalary = $wishSalary;
-    }
+        public function setEnglishLevel(?string $languages): void
+        {
+            $this->englishLevel = $languages;
+        }
 
-    public function getWishWorkTypes(): array
-    {
-        return $this->wishWorkTypes;
-    }
+        public function getSkills(): ?array
+        {
+            return $this->skills;
+        }
 
-    public function setWishWorkTypes(array $wishWorkTypes): void
-    {
-        $this->wishWorkTypes = $wishWorkTypes;
-    }
+        public function setSkills(?array $skills): void
+        {
+            $this->skills = $skills;
+        }
 
-    public function getLanguages(): array
-    {
-        return $this->languages;
-    }
+        public function getCategory(): ?string
+        {
+            return $this->category;
+        }
 
-    public function setLanguages(array $languages): void
-    {
-        $this->languages = $languages;
-    }
+        public function setCategory(?string $category): void
+        {
+            $this->category = $category;
+        }
 
-    public function getSkills(): array
-    {
-        return $this->skills;
-    }
+        public function getCountry(): ?string
+        {
+            return $this->country;
+        }
 
-    public function setSkills(array $skills): void
-    {
-        $this->skills = $skills;
-    }
+        public function setCountry(?string $country): void
+        {
+            $this->country = $country;
+        }
 
-    public function getSpecialization(): string
-    {
-        return $this->specialization;
-    }
+        public function getCity(): ?string
+        {
+            return $this->city;
+        }
 
-    public function setSpecialization(string $specialization): void
-    {
-        $this->specialization = $specialization;
-    }
+        public function setCity(?string $city): void
+        {
+            $this->city = $city;
+        }
 
-    public function getWishCountries(): array
-    {
-        return $this->wishCountries;
-    }
+        public function getExperienceTerm(): ?int
+        {
+            return $this->experienceTerm;
+        }
 
-    public function setWishCountries(array $wishCountries): void
-    {
-        $this->wishCountries = $wishCountries;
-    }
+        public function setExperienceTerm(?int $experienceTerm): void
+        {
+            $this->experienceTerm = $experienceTerm;
+        }
 
-    public function getWishCities(): array
-    {
-        return $this->wishCities;
-    }
+        public function setId(?int $id): ModelInterface
+        {
+            die('Id');
+        }
 
-    public function setWishCities(array $wishCities): void
-    {
-        $this->wishCities = $wishCities;
-    }
+        public function toStorage(): array
+        {
+            die('toStorage');
+        }
 
-    public function getExperienceTerm(): int
-    {
-        return $this->experienceTerm;
-    }
+        public static function createFromStorage(array $data): ModelInterface
+        {
+            die('createFromStorage');
+        }
 
-    public function setExperienceTerm(int $experienceTerm): void
-    {
-        $this->experienceTerm = $experienceTerm;
+        public function getUserId(): int
+        {
+            return $this->userId;
+        }
+
+        public function setUserId(int $userId): void
+        {
+            $this->userId = $userId;
+        }
+
+        public function getPosition(): ?string
+        {
+            return $this->position;
+        }
+
+        public function setPosition(?string $position): void
+        {
+            $this->position = $position;
+        }
+
+        public function getAbout(): ?string
+        {
+            return $this->about;
+        }
+
+        public function setAbout(?string $about): void
+        {
+            $this->about = $about;
+        }
     }
-}

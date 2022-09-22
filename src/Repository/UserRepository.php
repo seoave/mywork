@@ -1,56 +1,18 @@
 <?php
 
-declare(strict_types=1);
+    declare(strict_types=1);
 
-namespace App\Repository;
+    namespace App\Repository;
 
-use App\Model\ModelInterface;
-use App\Model\User;
+    use App\Model\ModelInterface;
+    use App\Model\User;
 
-class UserRepository extends BasePdoRepository
-{
-
-    protected function transformtoDb(ModelInterface $model): array
+    class UserRepository extends BasePdoRepository
     {
-        // TODO: Implement transformtoDb() method.
-        die('transformtoDb() method');
-    }
 
-    protected function transformtoModel(array $data): ModelInterface
-    {
-        $user = new User($data['name'], $data['email']);
-        $user->setId((int) $data['id']);
-        $user->setRole($data['role']);
-        $user->setSalt($data['salt']);
-        $user->setPassword($data['password']);
-        $user->setCountry($data['country']);
-        $user->setCity($data['city']);
-        $user->setPhone($data['phone']);
-        $user->setPhoto($data['photo']);
-        return $user;
-    }
-
-    public function findByEmail(string $email): ?ModelInterface
-    {
-        $statement = $this->pdo->prepare('SELECT * FROM users WHERE email = :email');
-        $statement->execute(['email' => $email]);
-        $userArray = $statement->fetch(\PDO::FETCH_ASSOC);
-
-        if (! $userArray) {
-            return null;
-        }
-
-        return $this->transformtoModel($userArray);
-    }
-
-    public function create(ModelInterface $model): ?ModelInterface
-    {
-        $statement = $this->pdo->prepare(
-            'INSERT INTO ' . $this->getTableName() . ' (name, email, role, salt, password, birthday, country, city, phone, photo) 
-                   VALUES (:name, :email, :role, :salt, :password, :birthday, :country, :city, :phone, :photo)'
-        );
-        $statement->execute(
-            [
+        protected function transformtoDb(ModelInterface $model): array
+        {
+            return [
                 'name' => $model->getName(),
                 'email' => $model->getEmail(),
                 'role' => $model->getRole(),
@@ -61,15 +23,66 @@ class UserRepository extends BasePdoRepository
                 'city' => $model->getCity(),
                 'phone' => $model->getPhone(),
                 'photo' => $model->getPhoto(),
-            ]
-        );
+            ];
+        }
 
-        return $model;
-    }
+        protected function transformtoModel(array $data): ModelInterface
+        {
+            $user = new User($data['name'], $data['email']);
+            $user->setId((int) $data['id']);
+            $user->setRole($data['role']);
+            $user->setSalt($data['salt']);
+            $user->setPassword($data['password']);
+            $user->setCountry($data['country']);
+            $user->setCity($data['city']);
+            $user->setPhone($data['phone']);
+            $user->setPhoto($data['photo']);
 
-    protected function getTableName(): string
-    {
-        // TODO: Implement getTableName() method.
-        return 'users';
+            return $user;
+        }
+
+        public function findByEmail(string $email): ?ModelInterface
+        {
+            $statement = $this->pdo->prepare('SELECT * FROM users WHERE email = :email');
+            $statement->execute(['email' => $email]);
+            $userArray = $statement->fetch(\PDO::FETCH_ASSOC);
+
+            if (! $userArray) {
+                return null;
+            }
+
+            return $this->transformtoModel($userArray);
+        }
+
+        public function create(ModelInterface $model): ?ModelInterface
+        {
+            $statement = $this->pdo->prepare(
+                'INSERT INTO ' . $this->getTableName() . ' (name, email, role, salt, password, birthday, country, city, phone, photo) 
+                   VALUES (:name, :email, :role, :salt, :password, :birthday, :country, :city, :phone, :photo)'
+            );
+            $statement->execute($this->transformtoDb($model));
+
+            return $model;
+        }
+
+        protected function getTableName(): string
+        {
+            return 'users';
+        }
+
+        public function update(ModelInterface $model): ?ModelInterface
+        {
+            // TODO: Implement update() method.
+            return $model;
+        }
+
+        public function delete($id): ?ModelInterface
+        {
+            // TODO: Implement delete() method.
+        }
+
+        public function findById($id): ?ModelInterface
+        {
+            // TODO: Implement findById() method.
+        }
     }
-}

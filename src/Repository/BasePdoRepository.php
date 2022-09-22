@@ -6,10 +6,11 @@
 
     use App\DI\Container;
     use App\Model\ModelInterface;
+    use PDO;
 
     abstract class BasePdoRepository implements RepositoryInterface
     {
-        protected \PDO $pdo;
+        protected PDO $pdo;
 
         public function __construct()
         {
@@ -19,7 +20,7 @@
         public function findAll(): array
         {
             $statement = $this->pdo->query('SELECT * FROM ' . $this->getTableName());
-            $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
+            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
             $users = [];
             foreach ($results as $userFromDB) {
                 $users[] = $this->transformtoModel($userFromDB);
@@ -28,15 +29,9 @@
             return $users;
         }
 
-        public function create(ModelInterface $model): ?ModelInterface
-        {
-            // TODO: Implement create() method.
-        }
+        abstract public function create(ModelInterface $model): ?ModelInterface;
 
-        public function update(ModelInterface $model): ?ModelInterface
-        {
-            // TODO: Implement update() method.
-        }
+        abstract public function update(ModelInterface $model): ?ModelInterface;
 
         abstract public function delete($id): ?ModelInterface;
 

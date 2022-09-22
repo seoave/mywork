@@ -1,48 +1,122 @@
 <?php
 
-namespace App\Controller;
+    namespace App\Controller;
 
-class DeveloperProfilePageController extends AbstractController
-{
-    protected array $pageAttributes;
+    use App\DI\Container;
+    use App\Model\Resume;
+    use App\Repository\RepositoryInterface;
 
-    public function __construct()
+    class DeveloperProfilePageController extends AbstractController
     {
-        $pageAttributes = [
-            'title' => 'Developer profile'
-        ];
+        protected array $pageAttributes;
+        private RepositoryInterface $resumeRepository;
 
-        $this->pageAttributes = $pageAttributes;
+        public function __construct()
+        {
+            $this->pageAttributes = [
+                'title' => 'Developer profile',
+            ];
+            $this->resumeRepository = Container::getInstance()->getResumeRepository();
+        }
+
+        public function getDeveloperProfilePage(): string
+        {
+            $this->activateSession();
+            $this->updatePageAttributes();
+
+            return $this->render('developerAccount', $this->pageAttributes);
+        }
+
+        public function sendEditDeveloperProfile(): ?string
+        {
+            $this->activateSession();
+
+            $position = $_POST['developerPosition'] ? trim($_POST['developerPosition']) : null;
+            $salary = ! empty($_POST['developerDesiredSalary']) ? (int) $_POST['developerDesiredSalary'] : null;
+            $experienceTerm = ! empty($_POST['developerExperienceTerm']) ? (int) $_POST['developerExperienceTerm'] : null;
+            $country = $_POST['country'] ?? null;
+            $city = $_POST['developerCity'] ? trim($_POST['developerCity']) : null;
+            $category = $_POST['developerCategory'] ?? null;
+            $skills = $_POST['developerSkills'] ?? null;
+            $experience = $_POST['developerExperience'] ? trim($_POST['developerExperience']) : null;
+            $about = $_POST['developerAbout'] ? trim($_POST['developerAbout']) : null;
+            $englishLevel = $_POST['developerEnglishLevel'] ?? null;
+            $jobTypes = $_POST['desireJobTypes'] ?? null;
+
+            $resumeByUserId = false;
+            $newResume = false;
+
+            if (
+                $position || $salary || $experienceTerm
+                || $country || $city || $category || $experience
+                || $about || $englishLevel || $jobTypes
+            ) {
+                if ($_SESSION['userId']) {
+                    $newResume = new Resume($_SESSION['userId']);
+                    $newResume->setExperienceTerm($experienceTerm);
+                    $newResume->setExperience($experience);
+                    $newResume->setPosition($position);
+                    $newResume->setSalary($salary);
+                    $newResume->setJobTypes($jobTypes);
+                    $newResume->setEnglishLevel($englishLevel);
+                    $newResume->setSkills($skills);
+                    $newResume->setCategory($category);
+                    $newResume->setCountry($country);
+                    $newResume->setCity($city);
+                    $newResume->setAbout($about);
+
+                    $resumeByUserId = $this->resumeRepository->findById($_SESSION['userId']);
+                }
+
+                if ($resumeByUserId) {
+                    $this->resumeRepository->update($newResume);
+                } else {
+                    $this->resumeRepository->create($newResume);
+                }
+
+                $this->updatePageAttributes();
+                $this->pageAttributes['updateDeveloperProfileMessage'] = 'Profile updated';
+            }
+
+            return $this->render('developerAccount', $this->pageAttributes);
+        }
+
+        private function updatePageAttributes(): void
+        {
+            $currentUserResume = false;
+
+            if ($_SESSION['userId']) {
+                $this->pageAttributes['userId'] = $_SESSION['userId'];
+                $currentUserResume = $this->resumeRepository->findById($_SESSION['userId']);
+            }
+
+            if ($currentUserResume) {
+                $updatedResumeArray = [];
+                $updatedResumeArray['category'] = $currentUserResume->getCategory();
+                $updatedResumeArray['position'] = $currentUserResume->getPosition();
+                $updatedResumeArray['salary'] = $currentUserResume->getSalary();
+                $updatedResumeArray['experienceTerm'] = $currentUserResume->getExperienceTerm();
+                $updatedResumeArray['experience'] = $currentUserResume->getExperience();
+                $updatedResumeArray['city'] = $currentUserResume->getCity();
+                $updatedResumeArray['country'] = $currentUserResume->getCountry();
+                $updatedResumeArray['about'] = $currentUserResume->getAbout();
+                $updatedResumeArray['skills'] = $currentUserResume->getSkills();
+                $updatedResumeArray['english'] = $currentUserResume->getEnglishLevel();
+                $updatedResumeArray['jobTypes'] = $currentUserResume->getJobTypes();
+
+                $this->pageAttributes = array_merge($this->pageAttributes, $updatedResumeArray);
+            }
+        }
+
+        private function activateSession(): void
+        {
+            if (session_status() !== 2) {
+                session_start();
+            }
+        }
+
+        public function getDeveloperPublicProfile(): string
+        {
+            return $this->render('developer', []);
+        }
     }
-
-    public function getDeveloperProfilePage(): string
-    {
-        return $this->render('developerAccount', $this->pageAttributes);
-    }
-
-    public function getDeveloperPublicProfile(): string
-    {
-        return $this->render('developer', []);
-    }
-
-    public function sendEditDeveloperProfile(): ?string
-    {
-        var_dump($_POST);
-
-        $position = trim($_POST['developerPosition']);
-        $salary = $_POST['developerDesiredSalary'];
-        $experienceTerm = $_POST['developerExperienceTerm'];
-        $country = $_POST['country'];
-        $city = trim($_POST['developerCity']);
-        $category = $_POST['developerCategory'];
-        $experience = trim($_POST['developerExperience']);
-        $about = trim($_POST['developerAbout']);
-        $english = $_POST['developerEnglishLevel'];
-        $jobTypes = $_POST['desireJobTypes'];
-
-        // TODO add / update developer resume
-        //
-
-        return $this->render('developerAccount', $this->pageAttributes);
-    }
-}
