@@ -40,6 +40,7 @@
             $skills = $_POST['developerSkills'] ?? null;
             $experience = $_POST['developerExperience'] ? trim($_POST['developerExperience']) : null;
             $about = $_POST['developerAbout'] ? trim($_POST['developerAbout']) : null;
+            $education = $_POST['developerEducation'] ? trim($_POST['developerEducation']) : null;
             $englishLevel = $_POST['developerEnglishLevel'] ?? null;
             $jobTypes = $_POST['desireJobTypes'] ?? null;
 
@@ -64,6 +65,7 @@
                     $newResume->setCountry($country);
                     $newResume->setCity($city);
                     $newResume->setAbout($about);
+                    $newResume->setEducation($education);
 
                     $resumeByUserId = $this->resumeRepository->findById($_SESSION['userId']);
                 }
@@ -100,6 +102,7 @@
                 $updatedResumeArray['city'] = $currentUserResume->getCity();
                 $updatedResumeArray['country'] = $currentUserResume->getCountry();
                 $updatedResumeArray['about'] = $currentUserResume->getAbout();
+                $updatedResumeArray['education'] = $currentUserResume->getEducation();
                 $updatedResumeArray['skills'] = $currentUserResume->getSkills();
                 $updatedResumeArray['english'] = $currentUserResume->getEnglishLevel();
                 $updatedResumeArray['jobTypes'] = $currentUserResume->getJobTypes();

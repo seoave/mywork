@@ -23,6 +23,7 @@
                 'category' => $model->getCategory(),
                 'experience' => $model->getExperience(),
                 'about' => $model->getAbout(),
+                'education' => $model->getEducation(),
                 'english' => $model->getEnglishLevel(),
                 'job_types' => implode(',', $model->getJobTypes()),
             ];
@@ -40,6 +41,7 @@
             $model->setCategory($data['category']);
             $model->setExperience($data['experience']);
             $model->setAbout($data['about']);
+            $model->setEducation($data['education']);
             $model->setEnglishLevel($data['english']);
             $model->setJobTypes($data['job_types'] ? explode(',', $data['job_types']) : null);
 
@@ -70,7 +72,7 @@
                 'UPDATE resumes
                 SET position = :position, salary = :salary, experience_term = :experience_term, 
                     country = :country, city = :city, skills = :skills, category = :category, 
-                    experience = :experience, about = :about, english = :english, job_types = :job_types
+                    experience = :experience, about = :about, education = :education, english = :english, job_types = :job_types
                     WHERE user_id = :user_id');
 
             if ($statement->execute($this->transformtoDb($model))) {

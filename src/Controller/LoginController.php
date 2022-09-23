@@ -56,8 +56,6 @@
                         break;
                     case 'candidate':
                         Redirection::redirectTo('/account/developer');
-//                        $controller = new DeveloperProfilePageController();
-//                        echo $controller->getDeveloperProfilePage();
                         break;
                 }
             } else {

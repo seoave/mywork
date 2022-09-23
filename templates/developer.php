@@ -1,4 +1,6 @@
-<?php require_once __DIR__ . '/parts/header.php'; ?>
+<?php
+    /** @var array $args */
+    require __DIR__ . '/parts/header.php'; ?>
 <main class="pt-5">
     <div class="container">
         <div class="row">
@@ -11,52 +13,82 @@
                         <div class="position-contact">
                             <div class="name-position">
                                 <h1>FirstName LastName</h1>
-                                <h2>PHP developer</h2>
-                                <span class="desired-salary">$1000</span>
-                                <span class="desired-work-type">Full time</span>
+
+                                <?php if ($args['position']): ?>
+                                    <h2><?php echo $args['position']; ?></h2>
+                                <?php endif; ?>
+
+                                <?php if ($args['salary']): ?>
+                                    <span class="desired-salary">$<?php echo $args['salary']; ?></span>
+                                <?php endif; ?>
+
+                                <?php if ($args['salary']): ?>
+                                    <span class="desired-work-type"><?php echo $args['jobTypes']; ?></span>
+                                <?php endif; ?>
+
                             </div>
                         </div>
                     </div>
-                    <div class="short-description  mb-36">
-                        <h3 class="text-primary">About</h3>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed
-                        cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis
-                        ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum
-                        lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-                        inceptos himenaeos. Curabitur sodales ligula in libero.
-                    </div>
-                    <div class="skills mb-36">
-                        <h3 class="text-primary">Skills</h3>
-                        <p>HTML, PHP, CSS</p>
-                    </div>
-                    <div class="languages mb-36">
-                        <h3 class="text-primary">Languages</h3>
-                        <p>English, Deutsch, Albanian</p>
-                    </div>
-                    <div class="education mb-36">
-                        <h3 class="text-primary">Work Experiences</h3>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed
-                        cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis
-                        ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum
-                        lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-                        inceptos himenaeos. Curabitur sodales ligula in libero.
-                    </div>
-                    <div class="expirience mb-36">
-                        <h3 class="text-primary">Education</h3>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed
-                        cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis
-                        ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum
-                        lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-                        inceptos himenaeos. Curabitur sodales ligula in libero.
-                    </div>
+
+                    <?php if ($args['about']) : ?>
+                        <div class="short-description  mb-36">
+                            <h3 class="text-primary">About</h3>
+                            <p><?php echo $args['about']; ?></p>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($args['skills']): ?>
+                        <div class="skills mb-36">
+                            <h3 class="text-primary">Skills</h3>
+                            <p><?php echo $args['skills']; ?></p>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($args['englishLevel']): ?>
+                        <div class="languages mb-36">
+                            <h3 class="text-primary">English level</h3>
+                            <p><?php echo $args['englishLevel']; ?></p>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($args['experienceTerm']): ?>
+                        <div class="experience mb-36">
+                            <h3 class="text-primary">Experience term</h3>
+                            <p><?php echo $args['experienceTerm']; ?> years</p>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($args['experience']): ?>
+                        <div class="experience mb-36">
+                            <h3 class="text-primary">Work Experiences</h3>
+                            <p><?php echo $args['experience']; ?></p>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($args['education']): ?>
+                        <div class="education mb-36">
+                            <h3 class="text-primary">Education</h3>
+                            <p><?php echo $args['education']; ?></p>
+                        </div>
+                    <?php endif; ?>
                 </article>
             </div>
             <div class="col col-3">
                 <div class="contact mb-36">
                     <h3>Contact info</h3>
-                    <h4><i class="bi bi-telephone-fill text-primary"></i> +380971234567</h4>
-                    <h4><i class="bi bi-envelope-fill text-primary"></i> user@email.com</h4>
-                    <h4><i class="bi bi-geo-alt-fill text-primary"></i> Address</h4>
+
+                    <?php if ($args['phone']): ?>
+                        <h4><i class="bi bi-telephone-fill text-primary"></i> <?php echo $args['phone']; ?></h4>
+                    <?php endif; ?>
+
+                    <?php if ($args['email']): ?>
+                        <h4><i class="bi bi-envelope-fill text-primary"></i> <?php echo $args['email']; ?></h4>
+                    <?php endif; ?>
+
+                    <?php if ($args['address']): ?>
+                        <h4><i class="bi bi-geo-alt-fill text-primary"></i><?php echo $args['address']; ?></h4>
+                    <?php endif; ?>
+
                 </div>
                 <div class="message mb-36">
                     <h3>Send message to candidate</h3>

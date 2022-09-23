@@ -18,8 +18,7 @@
                             </li>
                         <?php endif; ?>
 
-                        <li><a href="#">Contacts, Photo, CV</a></li>
-                        <li><a href="#">Edit account (remove profile, change email and password)</a></li>
+                        <li><a href="/account">Personal profile (remove profile, change email and password)</a></li>
                     </ul>
 
                     <?php if (isset($args['updateDeveloperProfileMessage'])): ?>
