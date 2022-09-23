@@ -49,6 +49,16 @@
                 'method' => 'getDashboardPage',
             ],
         ],
+        '/account' => [
+            'get' => [
+                'controller' => \App\Controller\UserProfileController::class,
+                'method' => 'getUserProfile',
+            ],
+            'post' => [
+                'controller' => \App\Controller\DeveloperProfilePageController::class,
+                'method' => 'sendEditDeveloperProfile',
+            ],
+        ],
         '/account/developer' => [
             'get' => [
                 'controller' => \App\Controller\DeveloperProfilePageController::class,
