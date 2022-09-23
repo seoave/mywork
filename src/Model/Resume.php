@@ -8,6 +8,7 @@
         private ?int $experienceTerm;
         private ?string $experience;
         private ?string $about;
+        private ?string $education;
         private ?string $position;
         private ?int $salary;
         private ?array $jobTypes;
@@ -155,5 +156,15 @@
         public function setAbout(?string $about): void
         {
             $this->about = $about;
+        }
+
+        public function getEducation(): ?string
+        {
+            return $this->education;
+        }
+
+        public function setEducation(?string $education): void
+        {
+            $this->education = $education;
         }
     }

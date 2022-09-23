@@ -19,7 +19,6 @@
     foreach ($routes as $routeUri => $route) {
         $routeUri = addcslashes($routeUri, '/');
         preg_match("/^$routeUri$/", $uri, $params);
-        // var_dump($params);
         if (count($params) > 0) {
             $controller = new $route[$method]['controller'];
             $controllerMethod = $route[$method]['method'];

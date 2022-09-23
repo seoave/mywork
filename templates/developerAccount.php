@@ -1,6 +1,6 @@
 <?php
     /** @var array $args */
-    require_once __DIR__ . '/parts/header.php'; ?>
+    require __DIR__ . '/parts/header.php'; ?>
 <main class="pt-5">
     <div class="container">
         <div class="row">
@@ -407,6 +407,14 @@
                             </div>
                         </div>
                         <div class="form-group row mb-4">
+                            <label for="developer-education" class="col-sm-3 col-form-label">Education</label>
+                            <div class="col-sm-9">
+                                 <textarea name="developerEducation" id="developer-education"
+                                           class="form-control"><?php echo $args['education']; ?>
+                                 </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row mb-4">
                             <label for="developer-english-level" class="col-sm-3 col-form-label">English level</label>
                             <div class="col-sm-9">
                                 <?php $englishLevels = [
@@ -466,4 +474,4 @@
         </div>
     </div>
 </main>
-<?php require_once __DIR__ . '/parts/footer.php'; ?>
+<?php require __DIR__ . '/parts/footer.php'; ?>

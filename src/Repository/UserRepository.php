@@ -9,7 +9,6 @@
 
     class UserRepository extends BasePdoRepository
     {
-
         protected function transformtoDb(ModelInterface $model): array
         {
             return [
@@ -81,8 +80,16 @@
             // TODO: Implement delete() method.
         }
 
-        public function findById($id): ?ModelInterface
+        public function findById($userId): ?ModelInterface
         {
-            // TODO: Implement findById() method.
+            $statement = $this->pdo->prepare('SELECT * FROM users WHERE id = :userId');
+            $statement->execute(['userId' => $userId]);
+            $userArray = $statement->fetch(\PDO::FETCH_ASSOC);
+
+            if (! $userArray) {
+                return null;
+            }
+
+            return $this->transformtoModel($userArray);
         }
     }
