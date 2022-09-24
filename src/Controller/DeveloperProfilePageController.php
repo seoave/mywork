@@ -5,6 +5,7 @@
     use App\DI\Container;
     use App\Model\Resume;
     use App\Repository\RepositoryInterface;
+    use App\Session;
 
     class DeveloperProfilePageController extends AbstractController
     {
@@ -21,7 +22,7 @@
 
         public function getDeveloperProfilePage(): string
         {
-            $this->activateSession();
+            Session::activateSession();
             $this->updatePageAttributes();
 
             return $this->render('developerAccount', $this->pageAttributes);
@@ -29,7 +30,7 @@
 
         public function sendEditDeveloperProfile(): ?string
         {
-            $this->activateSession();
+            Session::activateSession();
 
             $position = $_POST['developerPosition'] ? trim($_POST['developerPosition']) : null;
             $salary = ! empty($_POST['developerDesiredSalary']) ? (int) $_POST['developerDesiredSalary'] : null;
@@ -108,13 +109,6 @@
                 $updatedResumeArray['jobTypes'] = $currentUserResume->getJobTypes();
 
                 $this->pageAttributes = array_merge($this->pageAttributes, $updatedResumeArray);
-            }
-        }
-
-        private function activateSession(): void
-        {
-            if (session_status() !== 2) {
-                session_start();
             }
         }
 

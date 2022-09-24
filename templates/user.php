@@ -7,19 +7,9 @@
             <div class="col col-9">
                 <article class="candidate-account">
 
-                    <ul class="account-menu">
-                        <li><a href="/account/developer">Edit profile</a></li>
+                    <?php require __DIR__ . '/parts/authorizedUserMenu.php'; ?>
 
-                        <?php if ($args['userId']): ?>
-                            <li>
-                                <a href="/developers/<?php echo $args['userId']; ?>" target="_blank">
-                                    Public profile
-                                </a>
-                            </li>
-                        <?php endif; ?>
-
-                        <li><a href="/account">Personal profile (remove profile, change email and password)</a></li>
-                    </ul>
+                    <h1 class="mb-36"><?php echo $args['userName']; ?></h1>
 
                     <?php if (isset($args['updateDeveloperProfileMessage'])): ?>
                         <div class="alert alert-danger" role="alert">
@@ -27,51 +17,83 @@
                         </div>
                     <?php endif; ?>
 
-                    <form id="edit-developer-profile" action="/account/developer" method="post" class="edit-developer-profile">
+                    <form id="edit-user-profile" action="/account" method="post" class="edit-user-profile">
+
                         <div class="form-group row mb-4">
-                            <label for="developer-position" class="col-sm-3 col-form-label">Position</label>
+                            <label for="user-photo" class="col-sm-3 col-form-label">Photo</label>
+                            <div class="col-sm-9">
+                                <input type="file"
+                                       class="form-control"
+                                       id="user-photo"
+                                       aria-describedby="user-photo"
+                                       aria-label="Upload photo">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-4">
+                            <label for="user-name" class="col-sm-3 col-form-label">Name</label>
                             <div class="col-sm-9">
                                 <input type="text"
                                        class="form-control"
-                                       name="developerPosition"
-                                       id="developer-position"
-                                       placeholder="e.g. PHP developer"
-                                       value="<?php echo $args['position']; ?>"
+                                       name="userName"
+                                       id="user-name"
+                                       placeholder="e.g. Bernard"
+                                       value="<?php echo $args['userName']; ?>"
                                 >
                             </div>
                         </div>
                         <div class="form-group row mb-4">
-                            <label for="developer-desired-salary" class="col-sm-3 col-form-label">Desired salary</label>
+                            <label for="user-role" class="col-sm-3 col-form-label">Role</label>
                             <div class="col-sm-9">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">$</div>
-                                    </div>
-                                    <input type="number"
-                                           class="form-control"
-                                           name="developerDesiredSalary"
-                                           id="developer-desired-salary"
-                                           placeholder="e.g. 2000"
-                                           value="<?php echo $args['salary']; ?>"
-                                    >
-                                </div>
+                                <input type="text"
+                                       class="form-control"
+                                       name="userRole"
+                                       id="user-role"
+                                       value="<?php echo $args['userRole']; ?>"
+                                       readonly
+                                       disabled
+                                >
                             </div>
                         </div>
                         <div class="form-group row mb-4">
-                            <label for="developer-experience-term" class="col-sm-3 col-form-label">Term of work experience</label>
+                            <label for="user-phone" class="col-sm-3 col-form-label">Phone</label>
                             <div class="col-sm-9">
-                                <input type="number" class="form-control"
-                                       name="developerExperienceTerm"
-                                       id="developer-experience-term"
-                                       placeholder="e.g. 2.5"
-                                       value="<?php echo $args['experienceTerm']; ?>"
+                                <input type="text"
+                                       class="form-control"
+                                       name="userPhone"
+                                       id="user-phone"
+                                       placeholder="e.g. +380637778899"
+                                       value="<?php echo $args['userPhone']; ?>"
+                                >
+                            </div>
+                        </div>
+                        <div class="form-group row mb-4">
+                            <label for="user-birthday" class="col-sm-3 col-form-label">Birthday</label>
+                            <div class="col-sm-9">
+                                <input type="date"
+                                       class="form-control"
+                                       name="userBirthday"
+                                       id="user-birthday"
+                                       placeholder=""
+                                       value="<?php echo $args['userBirthday']; ?>"
+                                >
+                            </div>
+                        </div>
+                        <div class="form-group row mb-4">
+                            <label for="user-email" class="col-sm-3 col-form-label">Email</label>
+                            <div class="col-sm-9">
+                                <input type="email"
+                                       class="form-control"
+                                       name="userEmail"
+                                       id="user-email"
+                                       placeholder="e.g. user@mail.com"
+                                       value="<?php echo $args['userEmail']; ?>"
                                 >
                             </div>
                         </div>
                         <div class=" form-group row mb-4">
-                            <label for="country" class="col-sm-3 col-form-label">Country</label>
+                            <label for="user-country" class="col-sm-3 col-form-label">Country</label>
                             <div class="col-sm-9">
-                                <select id="country" name="country" class="form-control">
+                                <select id="user-country" name="userCountry" class="form-control">
                                     <option value="" disabled selected>Select country</option>
                                     <?php
                                         $countries = [
@@ -331,7 +353,7 @@
                                     ?>
                                     <?php foreach ($countries as $country): ?>
                                         <option value="<?php echo $country ?>"
-                                            <?php if ($country === $args['country']) :
+                                            <?php if ($country === $args['userCountry']) :
                                                 echo 'selected';
                                             endif; ?>
                                         >
@@ -342,126 +364,15 @@
                             </div>
                         </div>
                         <div class="form-group row mb-4">
-                            <label for="developer-city" class="col-sm-3 col-form-label">City</label>
+                            <label for="user-city" class="col-sm-3 col-form-label">City</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="developerCity" id="developer-city"
-                                       placeholder="Kyiv" value="<?php
-                                    echo $args['city']; ?>">
-                            </div>
-                        </div>
-                        <div class=" form-group row mb-4">
-                            <label for="developer-skills" class="col-sm-3 col-form-label">Skills</label>
-                            <div class="col-sm-9">
-                                <?php $skills = ['PHP', 'GIT', 'CSS']; ?>
-                                <?php foreach ($skills as $skill): ?>
-                                    <div class="form-check form-check-inline">
-                                        <input name="developerSkills[]"
-                                               class="form-check-input"
-                                               type="checkbox"
-                                               value="<?php echo $skill; ?>"
-                                               id="developerSkills<?php echo $skill; ?>"
-                                            <?php if (in_array($skill, $args['skills'])):
-                                                echo 'checked';
-                                            endif; ?>
-                                        >
-                                        <label class="form-check-label" for="developerSkills<?php echo $skill; ?>">
-                                            <?php echo $skill; ?>
-                                        </label>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                        <div class="form-group row mb-4">
-                            <label for="developer-category" class="col-sm-3 col-form-label">IT Category</label>
-                            <div class="col-sm-9">
-                                <select name="developerCategory" id="developer-category" class="form-control">
-                                    <option value="" disabled selected>Select category</option>
-                                    <?php $categories = ['PHP', 'CSS', 'Javascript']; ?>
-                                    <?php foreach ($categories as $category): ?>
-                                        <option value="<?php echo $category ?>"
-                                            <?php if ($category === $args['category']) :
-                                                echo 'selected';
-                                            endif; ?>
-                                        >
-                                            <?php echo $category ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row mb-4">
-                            <label for="developer-experience" class="col-sm-3 col-form-label">Experience</label>
-                            <div class="col-sm-9">
-                                        <textarea name="developerExperience" id="developer-experience"
-                                                  class="form-control"><?php echo $args['experience']; ?>
-                                        </textarea>
-                            </div>
-                        </div>
-                        <div class="form-group row mb-4">
-                            <label for="developer-about" class="col-sm-3 col-form-label">About me</label>
-                            <div class="col-sm-9">
-                                 <textarea name="developerAbout" id="developer-about"
-                                           class="form-control"><?php echo $args['about']; ?>
-                                 </textarea>
-                            </div>
-                        </div>
-                        <div class="form-group row mb-4">
-                            <label for="developer-education" class="col-sm-3 col-form-label">Education</label>
-                            <div class="col-sm-9">
-                                 <textarea name="developerEducation" id="developer-education"
-                                           class="form-control"><?php echo $args['education']; ?>
-                                 </textarea>
-                            </div>
-                        </div>
-                        <div class="form-group row mb-4">
-                            <label for="developer-english-level" class="col-sm-3 col-form-label">English level</label>
-                            <div class="col-sm-9">
-                                <?php $englishLevels = [
-                                    'No English',
-                                    'Beginner/Elementary',
-                                    'Pre-Intermediate',
-                                    'Intermediate',
-                                    'Upper-Intermediate',
-                                    'Advanced/Fluent',
-                                ]; ?>
-                                <?php foreach ($englishLevels as $level): ?>
-                                    <div class="form-check">
-                                        <input name="developerEnglishLevel"
-                                               class="form-check-input"
-                                               type="radio"
-                                               value="<?php echo $level; ?>"
-                                               id="<?php echo $level; ?>"
-                                            <?php if ($level === $args['english']) :
-                                                echo 'checked';
-                                            endif; ?>
-                                        >
-                                        <label class="form-check-label" for="<?php echo $level; ?>">
-                                            <?php echo $level; ?>
-                                        </label>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                        <div class="form-group row mb-4">
-                            <label for="developer-english-level" class="col-sm-3 col-form-label">Desire job types</label>
-                            <div class="col-sm-9">
-                                <?php $jobTypes = ['Remote', 'Office', 'Part-time']; ?>
-                                <?php foreach ($jobTypes as $jobType): ?>
-                                    <div class="form-check">
-                                        <input name="desireJobTypes[]"
-                                               class="form-check-input"
-                                               type="checkbox"
-                                               value="<?php echo $jobType; ?>"
-                                               id="desire-job-type-<?php echo $jobType; ?>"
-                                            <?php if (in_array($jobType, $args['jobTypes'])):
-                                                echo 'checked';
-                                            endif; ?>
-                                        >
-                                        <label class="form-check-label" for="desire-job-type-<?php echo $jobType; ?>">
-                                            <?php echo $jobType; ?>
-                                        </label>
-                                    </div>
-                                <?php endforeach; ?>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        name="userCity"
+                                        id="user-city"
+                                        placeholder="Kyiv"
+                                        value="<?php echo $args['userCity']; ?>">
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Update profile</button>

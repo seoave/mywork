@@ -7,20 +7,7 @@
             <div class="col col-9">
                 <article class="candidate-account">
 
-                    <ul class="account-menu">
-                        <li><a href="/account/developer">Edit profile</a></li>
-
-                        <?php if ($args['userId']): ?>
-                            <li>
-                                <a href="/developers/<?php echo $args['userId']; ?>" target="_blank">
-                                    Public profile
-                                </a>
-                            </li>
-                        <?php endif; ?>
-
-                        <li><a href="#">Contacts, Photo, CV</a></li>
-                        <li><a href="#">Edit account (remove profile, change email and password)</a></li>
-                    </ul>
+                    <?php require __DIR__ . '/parts/authorizedUserMenu.php'; ?>
 
                     <?php if (isset($args['updateDeveloperProfileMessage'])): ?>
                         <div class="alert alert-danger" role="alert">
