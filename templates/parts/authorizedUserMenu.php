@@ -2,7 +2,7 @@
 <ul class="account-menu">
     <li><a href="/account/developer">Edit profile</a></li>
 
-    <?php if ($args['userId']): ?>
+    <?php if (! empty($args['userId'])): ?>
         <li>
             <a href="/developers/<?php echo $args['userId']; ?>" target="_blank">
                 Public profile

@@ -11,19 +11,20 @@
 
                     <h1 class="mb-36"><?php echo $args['userName']; ?></h1>
 
-                    <?php if (isset($args['updateDeveloperProfileMessage'])): ?>
+                    <?php if (isset($args['notice'])): ?>
                         <div class="alert alert-danger" role="alert">
-                            <?php echo $args['updateDeveloperProfileMessage']; ?>
+                            <?php echo $args['notice']; ?>
                         </div>
                     <?php endif; ?>
 
-                    <form id="edit-user-profile" action="/account" method="post" class="edit-user-profile">
+                    <form id="edit-user-profile" action="" method="post" class="edit-user-profile" enctype="multipart/form-data">
 
                         <div class="form-group row mb-4">
                             <label for="user-photo" class="col-sm-3 col-form-label">Photo</label>
                             <div class="col-sm-9">
                                 <input type="file"
                                        class="form-control"
+                                       name="userPhoto"
                                        id="user-photo"
                                        aria-describedby="user-photo"
                                        aria-label="Upload photo">

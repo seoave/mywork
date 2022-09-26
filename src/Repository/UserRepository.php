@@ -71,7 +71,20 @@
 
         public function update(ModelInterface $model): ?ModelInterface
         {
-            // TODO: Implement update() method.
+            $statement = $this->pdo->prepare(
+                'UPDATE ' . $this->getTableName() . ' 
+                SET name = :name, email = :email, birthday = :birthday, 
+                country = :country, city = :city, phone = :phone'
+            );
+            $statement->execute([
+                'name' => $model->getName(),
+                'email' => $model->getEmail(),
+                'birthday' => null,
+                'country' => $model->getCountry(),
+                'city' => $model->getCity(),
+                'phone' => $model->getPhone(),
+            ]);
+
             return $model;
         }
 
