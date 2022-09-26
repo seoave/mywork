@@ -5,6 +5,8 @@
     use App\DI\Container;
     use App\Repository\RepositoryInterface;
     use App\Session;
+    use DateTime;
+    use DateTimeZone;
 
     class UserProfileController extends AbstractController
     {
@@ -17,7 +19,7 @@
             $this->userRepository = Container::getInstance()->getUserRepository();
         }
 
-        public function getUserProfile()
+        public function getUserProfile(): ?string
         {
             Session::activateSession();
             $this->updatePageAttributes();
@@ -27,10 +29,10 @@
 
         private function updatePageAttributes(): void
         {
+            $userProfile = null;
             if ($_SESSION['userId']) {
                 $this->pageAttributes['userId'] = $_SESSION['userId'];
                 $userProfile = $this->userRepository->findById($_SESSION['userId']);
-                //  var_dump($userProfile);
             }
 
             if ($userProfile) {
@@ -38,12 +40,10 @@
                 $updatedUserProfile['userName'] = $userProfile->getName();
                 $updatedUserProfile['userRole'] = $userProfile->getRole();
                 $updatedUserProfile['userPhone'] = $userProfile->getPhone();
-                $updatedUserProfile['userBirthday'] = $userProfile->getBirthday();
+                $updatedUserProfile['userBirthday'] = $userProfile->getBirthday()->format('Y-m-d');
                 $updatedUserProfile['userEmail'] = $userProfile->getEmail();
                 $updatedUserProfile['userCountry'] = $userProfile->getCountry();
                 $updatedUserProfile['userCity'] = $userProfile->getCity();
-
-                // var_dump($updatedUserProfile);
 
                 $this->pageAttributes = array_merge($this->pageAttributes, $updatedUserProfile);
             }
@@ -58,7 +58,7 @@
 
             $userName = ! empty($_POST['userName']) ? trim($_POST['userName']) : null;
             $userPhone = ! empty($_POST['userPhone']) ? trim($_POST['userPhone']) : null;
-            //       $userBirthday = ! empty($_POST['userBirthday']) ? $_POST['userBirthday'] : null; // TODO
+            $userBirthday = ! empty($_POST['userBirthday']) ? $_POST['userBirthday'] : null;
             $userEmail = ! empty($_POST['userEmail']) ? trim($_POST['userEmail']) : null;
             $userCountry = ! empty($_POST['userCountry']) ? trim($_POST['userCountry']) : null;
             $userCity = ! empty($_POST['userCity']) ? trim($_POST['userCity']) : null;
@@ -73,11 +73,10 @@
                 $this->render('user', $this->pageAttributes);
             }
 
-            // update user profile
+            $user = null;
 
             if ($_SESSION['userId']) {
                 $user = $this->userRepository->findById($_SESSION['userId']);
-                var_dump($user);
             }
 
             if ($userName) {
@@ -88,10 +87,12 @@
                 $user->setEmail($userEmail);
             }
 
-            // TODO birthday
-//            if ($userBirthday) {
-//                $user->setBirthday($userBirthday);
-//            }
+            if ($userBirthday) {
+                $datetime = DateTime::createFromFormat(
+                    'Y-m-d', $userBirthday, new DateTimeZone('Europe/Kiev'
+                ))->setTime(0, 0);
+                $user->setBirthday($datetime);
+            }
 
             if ($userCountry) {
                 $user->setCountry($userCountry);
@@ -109,8 +110,6 @@
 //            if ($userPhoto) {
 //                $user->setPhoto($userPhoto);
 //            }
-
-            var_dump($user);
 
             $this->userRepository->update($user);
 

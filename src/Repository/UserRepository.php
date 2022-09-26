@@ -36,6 +36,7 @@
             $user->setCity($data['city']);
             $user->setPhone($data['phone']);
             $user->setPhoto($data['photo']);
+            $user->setBirthday((new \DateTime())->setTimestamp((int) $data['birthday'])->setTimezone(new \DateTimeZone('Europe/Kiev')));
 
             return $user;
         }
@@ -79,7 +80,7 @@
             $statement->execute([
                 'name' => $model->getName(),
                 'email' => $model->getEmail(),
-                'birthday' => null,
+                'birthday' => $model->getBirthday()->getTimestamp(),
                 'country' => $model->getCountry(),
                 'city' => $model->getCity(),
                 'phone' => $model->getPhone(),
