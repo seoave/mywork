@@ -9,27 +9,59 @@
 
                     <?php require __DIR__ . '/parts/authorizedUserMenu.php'; ?>
 
-                    <h1 class="mb-36"><?php echo $args['userName']; ?></h1>
-
                     <?php if (isset($args['notice'])): ?>
                         <div class="alert alert-danger" role="alert">
                             <?php echo $args['notice']; ?>
                         </div>
                     <?php endif; ?>
 
-                    <form id="edit-user-profile" action="" method="post" class="edit-user-profile" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="photo-position-contact mb-36">
 
+                            <?php if ($args['userPhoto']): ?>
+                                <div class="candidate-photo">
+                                    <img src="../assets/images/<?php echo $args['userPhoto']; ?>" alt="">
+                                </div>
+                            <?php endif; ?>
+
+                            <div class="position-contact">
+                                <div class="name-position">
+                                    <h1 class="mb-36"><?php echo $args['userName']; ?></h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="edit-user-photo"
+                          action=""
+                          method="post"
+                          class="edit-user-photo"
+                          enctype="multipart/form-data"
+                    >
                         <div class="form-group row mb-4">
                             <label for="user-photo" class="col-sm-3 col-form-label">Photo</label>
                             <div class="col-sm-9">
-                                <input type="file"
-                                       class="form-control"
-                                       name="userPhoto"
-                                       id="user-photo"
-                                       aria-describedby="user-photo"
-                                       aria-label="Upload photo">
+                                <div class="input-group">
+                                    <input type="file"
+                                           class="form-control"
+                                           name="userPhoto"
+                                           id="user-photo"
+                                           aria-describedby="user-photo"
+                                           aria-label="Upload photo"
+                                           value="<?php echo $args['userPhoto']; ?>"
+                                    >
+                                    <button class="btn btn-outline-secondary"
+                                            type="submit"
+                                            id="sumbitUserPhoto">
+                                        Upload photo
+                                    </button>
+                                </div>
                             </div>
                         </div>
+
+                    </form>
+
+                    <form id="edit-user-profile" action="" method="post" class="edit-user-profile" enctype="multipart/form-data">
                         <div class="form-group row mb-4">
                             <label for="user-name" class="col-sm-3 col-form-label">Name</label>
                             <div class="col-sm-9">

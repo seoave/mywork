@@ -12,11 +12,15 @@
     {
         protected array $pageAttributes;
         private RepositoryInterface $userRepository;
+        private string $imagesDirectory;
 
         public function __construct()
         {
+            $container = Container::getInstance();
             $this->pageAttributes['title'] = 'User profile';
-            $this->userRepository = Container::getInstance()->getUserRepository();
+            $this->userRepository = $container->getUserRepository();
+            $parameters = $container->getParameters();
+            $this->imagesDirectory = $parameters['images_dir'];
         }
 
         public function getUserProfile(): ?string
@@ -45,6 +49,13 @@
                 $updatedUserProfile['userCountry'] = $userProfile->getCountry();
                 $updatedUserProfile['userCity'] = $userProfile->getCity();
 
+                $userPhoto = 'avatar.png';
+                if ($userProfile->getPhoto()) {
+                    $userPhoto = $userProfile->getPhoto();
+                }
+
+                $updatedUserProfile['userPhoto'] = $userPhoto;
+
                 $this->pageAttributes = array_merge($this->pageAttributes, $updatedUserProfile);
             }
         }
@@ -53,8 +64,8 @@
         {
             Session::activateSession();
             // todo update photo
-            //   var_dump($_FILES);
-            var_dump($_POST);
+            var_dump($_FILES);
+            //var_dump($_POST);
 
             $userName = ! empty($_POST['userName']) ? trim($_POST['userName']) : null;
             $userPhone = ! empty($_POST['userPhone']) ? trim($_POST['userPhone']) : null;
@@ -106,10 +117,11 @@
                 $user->setPhone($userPhone);
             }
 
-            // TODO photo
-//            if ($userPhoto) {
-//                $user->setPhoto($userPhoto);
-//            }
+            if (isset($_FILES['userPhoto'])) {
+                $destination = $this->imagesDirectory . $_FILES['userPhoto']['name'];
+                move_uploaded_file($_FILES['userPhoto']['tmp_name'], $destination);
+                $user->setPhoto($_FILES['userPhoto']['name']);
+            }
 
             $this->userRepository->update($user);
 

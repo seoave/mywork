@@ -75,7 +75,7 @@
             $statement = $this->pdo->prepare(
                 'UPDATE ' . $this->getTableName() . ' 
                 SET name = :name, email = :email, birthday = :birthday, 
-                country = :country, city = :city, phone = :phone'
+                country = :country, city = :city, phone = :phone, photo = :photo'
             );
             $statement->execute([
                 'name' => $model->getName(),
@@ -84,6 +84,7 @@
                 'country' => $model->getCountry(),
                 'city' => $model->getCity(),
                 'phone' => $model->getPhone(),
+                'photo' => $model->getPhoto(),
             ]);
 
             return $model;
@@ -92,6 +93,7 @@
         public function delete($id): ?ModelInterface
         {
             // TODO: Implement delete() method.
+            return 'deleted ' . $id;
         }
 
         public function findById($userId): ?ModelInterface

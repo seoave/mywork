@@ -19,6 +19,7 @@
         private function __construct()
         {
             $this->parameters['project_dir'] = $_SERVER['DOCUMENT_ROOT'];
+            $this->parameters['images_dir'] = $_SERVER['DOCUMENT_ROOT'] . '/assets/images/';
         }
 
         public function getPDO(): \PDO
@@ -72,5 +73,10 @@
             }
 
             return $resolved;
+        }
+
+        public function getParameters(): array
+        {
+            return $this->parameters;
         }
     }
