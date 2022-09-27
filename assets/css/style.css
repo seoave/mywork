@@ -57,6 +57,7 @@ main {
     justify-content: center;
     align-items: center;
     margin-right: 48px;
+    background-color: #838383;
 }
 
 .desired-salary, .desired-work-type {

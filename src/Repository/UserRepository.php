@@ -36,6 +36,7 @@
             $user->setCity($data['city']);
             $user->setPhone($data['phone']);
             $user->setPhoto($data['photo']);
+            $user->setBirthday((new \DateTime())->setTimestamp((int) $data['birthday'])->setTimezone(new \DateTimeZone('Europe/Kiev')));
 
             return $user;
         }
@@ -71,13 +72,28 @@
 
         public function update(ModelInterface $model): ?ModelInterface
         {
-            // TODO: Implement update() method.
+            $statement = $this->pdo->prepare(
+                'UPDATE ' . $this->getTableName() . ' 
+                SET name = :name, email = :email, birthday = :birthday, 
+                country = :country, city = :city, phone = :phone, photo = :photo'
+            );
+            $statement->execute([
+                'name' => $model->getName(),
+                'email' => $model->getEmail(),
+                'birthday' => $model->getBirthday()->getTimestamp(),
+                'country' => $model->getCountry(),
+                'city' => $model->getCity(),
+                'phone' => $model->getPhone(),
+                'photo' => $model->getPhoto(),
+            ]);
+
             return $model;
         }
 
         public function delete($id): ?ModelInterface
         {
             // TODO: Implement delete() method.
+            return 'deleted ' . $id;
         }
 
         public function findById($userId): ?ModelInterface

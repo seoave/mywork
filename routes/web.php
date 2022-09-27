@@ -55,8 +55,8 @@
                 'method' => 'getUserProfile',
             ],
             'post' => [
-                'controller' => \App\Controller\DeveloperProfilePageController::class,
-                'method' => 'sendEditDeveloperProfile',
+                'controller' => \App\Controller\UserProfileController::class,
+                'method' => 'sendEditUserForm',
             ],
         ],
         '/account/developer' => [
