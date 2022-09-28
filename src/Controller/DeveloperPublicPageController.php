@@ -4,12 +4,14 @@
 
     use App\DI\Container;
     use App\Repository\RepositoryInterface;
+    use DateTime;
 
     class DeveloperPublicPageController extends AbstractController
     {
         protected array $pageAttributes;
         private RepositoryInterface $resumeRepository;
         private RepositoryInterface $userRepository;
+        private DateTime $now;
 
         public function __construct()
         {
@@ -18,6 +20,7 @@
             ];
             $this->resumeRepository = Container::getInstance()->getResumeRepository();
             $this->userRepository = Container::getInstance()->getUserRepository();
+            $this->now = (new \DateTime())->setTimezone(new \DateTimeZone('Europe/Kiev'))->setTime(0, 0);
         }
 
         public function getDeveloper(array $params): ?string
@@ -38,12 +41,19 @@
                 return 'no Developer\'s resume in DB';
             }
 
+            $userPhoto = 'avatar.png';
+            if ($user->getPhoto()) {
+                $userPhoto = $user->getPhoto();
+            }
+
+            $developerProfile['userPhoto'] = $userPhoto;
             $developerProfile['name'] = $user->getName();
             $developerProfile['phone'] = $user->getPhone();
             $developerProfile['email'] = $user->getEmail();
             $developerProfile['position'] = $resume->getPosition();
             $developerProfile['salary'] = $resume->getSalary();
             $developerProfile['jobTypes'] = implode(', ', $resume->getJobTypes());
+            $developerProfile['age'] = $this->now->diff($user->getBirthday())->format('%y');
             $developerProfile['skills'] = implode(', ', $resume->getSkills());
             $developerProfile['englishLevel'] = $resume->getEnglishLevel();
             $developerProfile['about'] = $resume->getAbout();

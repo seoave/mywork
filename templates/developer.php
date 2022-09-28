@@ -7,12 +7,17 @@
             <div class="col col-9">
                 <article class="candidate-profile">
                     <div class="photo-position-contact mb-36">
-                        <div class="candidate-photo">
-                            <img src="../assets/images/avatar.png" alt="">
-                        </div>
+                        <?php if ($args['userPhoto']): ?>
+                            <div class="candidate-photo">
+                                <img src="../assets/images/<?php echo $args['userPhoto']; ?>" alt="">
+                            </div>
+                        <?php endif; ?>
                         <div class="position-contact">
                             <div class="name-position">
-                                <h1>FirstName LastName</h1>
+
+                                <?php if ($args['name']): ?>
+                                    <h1><?php echo $args['name']; ?></h1>
+                                <?php endif; ?>
 
                                 <?php if ($args['position']): ?>
                                     <h2><?php echo $args['position']; ?></h2>
@@ -22,8 +27,12 @@
                                     <span class="desired-salary">$<?php echo $args['salary']; ?></span>
                                 <?php endif; ?>
 
-                                <?php if ($args['salary']): ?>
+                                <?php if ($args['jobTypes']): ?>
                                     <span class="desired-work-type"><?php echo $args['jobTypes']; ?></span>
+                                <?php endif; ?>
+
+                                <?php if ($args['age']): ?>
+                                    <span class="developer-age"><?php echo $args['age']; ?> years</span>
                                 <?php endif; ?>
 
                             </div>

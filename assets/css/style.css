@@ -60,7 +60,9 @@ main {
     background-color: #838383;
 }
 
-.desired-salary, .desired-work-type {
+.desired-salary,
+.desired-work-type,
+.developer-age {
     font-size: 20px;
     display: block;
     font-weight: 600;
