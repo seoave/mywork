@@ -52,7 +52,10 @@
                                     >
                                     <button class="btn btn-outline-secondary"
                                             type="submit"
-                                            id="sumbitUserPhoto">
+                                            id="sumbitUserPhoto"
+                                            name="userPhotoSubmit"
+                                            value="photoSubmited"
+                                    >
                                         Upload photo
                                     </button>
                                 </div>
@@ -408,7 +411,13 @@
                                         value="<?php echo $args['userCity']; ?>">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Update profile</button>
+                        <button type="submit"
+                                class="btn btn-primary"
+                                name="userProfileSubmit"
+                                value="userProfileSubmited"
+                        >
+                            Update profile
+                        </button>
                     </form>
                 </article>
             </div>
