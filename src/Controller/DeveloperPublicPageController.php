@@ -66,10 +66,6 @@
             $developerProfile['title'] = $user->getName() . ' ' . $resume->getPosition();
             $this->pageAttributes = array_merge($this->pageAttributes, $developerProfile);
 
-            // var_dump($this->pageAttributes);
-
-            // TODO photo
-
             return $this->render('developer', $this->pageAttributes);
         }
     }
