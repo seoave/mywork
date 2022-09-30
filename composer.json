@@ -2,7 +2,8 @@
   "name": "hyperion-user/mywork",
   "autoload": {
     "psr-4": {
-      "App\\": "src/"
+      "App\\": "src/",
+      "Patterns\\": "patterns/"
     }
   },
   "authors": [

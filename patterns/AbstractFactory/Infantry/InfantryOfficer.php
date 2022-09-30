@@ -1,11 +1,13 @@
 <?php
 
-    namespace Patterns\AbstractFactory;
+    namespace Patterns\AbstractFactory\Infantry;
+
+    use Patterns\AbstractFactory\OfficerInterface;
 
     class InfantryOfficer implements OfficerInterface
     {
-        public function leadSergeant()
+        public function leadSergeant():string
         {
-            echo 'I manage sergeant';
+            return 'I manage sergeant' . PHP_EOL;
         }
     }

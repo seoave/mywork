@@ -1,20 +1,22 @@
 <?php
 
-    namespace Patterns\AbstractFactory;
+    namespace Patterns\AbstractFactory\Artillery;
+
+    use Patterns\AbstractFactory\AbstractPlatoonInterface;
 
     class ArtilleryPlatoon implements AbstractPlatoonInterface
     {
-        public function createOfficer(): OfficerInterface
+        public function createOfficer(): ArtilleryOfficer
         {
             return new ArtilleryOfficer();
         }
 
-        public function createSergeant(): SergeantInterface
+        public function createSergeant(): ArtillerySergeant
         {
             return new ArtillerySergeant();
         }
 
-        public function createSoldier(): SoldierInterface
+        public function createSoldier(): ArtillerySoldier
         {
             return new ArtillerySoldier();
         }

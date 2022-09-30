@@ -1,6 +1,8 @@
 <?php
 
-    namespace Patterns\AbstractFactory;
+    namespace Patterns\AbstractFactory\Infantry;
+
+    use Patterns\AbstractFactory\SergeantInterface;
 
     class InfantrySergeant implements SergeantInterface
     {

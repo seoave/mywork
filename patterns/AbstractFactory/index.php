@@ -1,10 +1,10 @@
 <?php
     declare(strict_types=1);
 
-    use Patterns\AbstractFactory\ArtilleryPlatoon;
-    use Patterns\AbstractFactory\InfantryPlatoon;
+    require_once __DIR__ . '/../../bootstrap.php';
 
-    require_once __DIR__ . '/../../vendor/autoload.php';
+    use Patterns\AbstractFactory\Artillery\ArtilleryPlatoon;
+    use Patterns\AbstractFactory\Infantry\InfantryPlatoon;
 
     $infantryPlatoon = new InfantryPlatoon();
     $infantryOfficer = $infantryPlatoon->createOfficer();
