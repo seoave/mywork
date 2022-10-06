@@ -1,0 +1,3 @@
+<?php
+
+    $strategy = new Strategy();
