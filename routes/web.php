@@ -69,6 +69,12 @@
                 'method' => 'sendEditDeveloperProfile',
             ],
         ],
+        '/jobs' => [
+            'get' => [
+                'controller' => \App\Controller\JobsPageController::class,
+                'method' => 'getJobs',
+            ],
+        ],
         '/developers' => [
             'get' => [
                 'controller' => \App\Controller\DevelopersPageController::class,
