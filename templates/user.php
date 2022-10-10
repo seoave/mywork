@@ -123,6 +123,8 @@
                                        id="user-email"
                                        placeholder="e.g. user@mail.com"
                                        value="<?php echo $args['userEmail']; ?>"
+                                       readonly
+                                       disabled
                                 >
                             </div>
                         </div>

@@ -81,6 +81,8 @@
                 $this->pageAttributes['updateDeveloperProfileMessage'] = 'Profile updated';
             }
 
+            $this->updatePageAttributes();
+
             return $this->render('developerAccount', $this->pageAttributes);
         }
 
@@ -93,8 +95,9 @@
                 $currentUserResume = $this->resumeRepository->findById($_SESSION['userId']);
             }
 
+            $updatedResumeArray = [];
+
             if ($currentUserResume) {
-                $updatedResumeArray = [];
                 $updatedResumeArray['category'] = $currentUserResume->getCategory();
                 $updatedResumeArray['position'] = $currentUserResume->getPosition();
                 $updatedResumeArray['salary'] = $currentUserResume->getSalary();
@@ -107,9 +110,22 @@
                 $updatedResumeArray['skills'] = $currentUserResume->getSkills();
                 $updatedResumeArray['english'] = $currentUserResume->getEnglishLevel();
                 $updatedResumeArray['jobTypes'] = $currentUserResume->getJobTypes();
-
-                $this->pageAttributes = array_merge($this->pageAttributes, $updatedResumeArray);
+            } else {
+                $updatedResumeArray['category'] = '';
+                $updatedResumeArray['position'] = '';
+                $updatedResumeArray['salary'] = '';
+                $updatedResumeArray['experienceTerm'] = '';
+                $updatedResumeArray['experience'] = '';
+                $updatedResumeArray['city'] = '';
+                $updatedResumeArray['country'] = '';
+                $updatedResumeArray['about'] = '';
+                $updatedResumeArray['education'] = '';
+                $updatedResumeArray['skills'] = [];
+                $updatedResumeArray['english'] = '';
+                $updatedResumeArray['jobTypes'] = [];
             }
+
+            $this->pageAttributes = array_merge($this->pageAttributes, $updatedResumeArray);
         }
 
         public function getDeveloperPublicProfile(): string
