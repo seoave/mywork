@@ -11,7 +11,7 @@
     <?php endif; ?>
 
     <li><a href="/account" target="_blank">
-            Edit account (Contacts, Photo,remove profile, change email and password)
+            Edit account
         </a>
     </li>
 </ul>
