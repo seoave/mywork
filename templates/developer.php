@@ -1,11 +1,14 @@
 <?php
-    /** @var array $args */
-    require __DIR__ . '/parts/header.php'; ?>
+/** @var array $args */
+require __DIR__ . '/parts/header.php'; ?>
 <main class="pt-5">
     <div class="container">
         <div class="row">
             <div class="col col-9">
                 <article class="candidate-profile">
+
+                    <?php require __DIR__ . '/parts/authorizedUserMenu.php'; ?>
+
                     <div class="photo-position-contact mb-36">
                         <?php if ($args['userPhoto']): ?>
                             <div class="candidate-photo">

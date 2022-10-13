@@ -8,6 +8,8 @@ require_once __DIR__ . '/parts/header.php'; ?>
             <?php if ($args['title']) : ?>
                 <h1 class="text-center"><?php echo $args['title'] ?></h1>
             <?php endif; ?>
+
+            <h3>Developer skills</h3>
             
         </div>
     </div>
