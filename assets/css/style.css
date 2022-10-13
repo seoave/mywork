@@ -127,3 +127,14 @@ ul.account-menu li:not(:last-child) {
 footer {
     padding-top: 45px;
 }
+
+/* dashboard */
+
+.dashboard .widget {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 30%;
+    padding: 6px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+}

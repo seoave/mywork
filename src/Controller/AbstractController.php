@@ -4,6 +4,8 @@
 
     namespace App\Controller;
 
+    use HttpRuntimeException;
+
     class AbstractController
     {
         protected array $pageAttributes;
@@ -30,6 +32,6 @@
                 }
             }
 
-            throw new \HttpRuntimeException('Template is not found');
+            throw new HttpRuntimeException('Template is not found');
         }
     }
