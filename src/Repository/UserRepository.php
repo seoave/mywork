@@ -109,4 +109,14 @@ class UserRepository extends BasePdoRepository
 
         return $this->transformtoModel($userArray);
     }
+
+    protected function transformtoModelsArray(array $results): array
+    {
+        $records = [];
+        foreach ($results as $recordFromDB) {
+            $records[] = $this->transformtoModel($recordFromDB);
+        }
+
+        return $records;
+    }
 }

@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\DI\Container;
+
 class SkillsPageController extends AbstractController
 {
     protected array $pageAttributes;
@@ -11,6 +13,7 @@ class SkillsPageController extends AbstractController
     {
         $this->pageAttributes = [
             'title' => 'Skills',
+            'skills' => Container::getInstance()->getSkillsRepository()->findAll(),
         ];
     }
 

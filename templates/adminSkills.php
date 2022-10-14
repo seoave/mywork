@@ -12,18 +12,21 @@ require_once __DIR__ . '/parts/header.php'; ?>
             <p><a href="/admin/skills/new" target="_blank">New skill</a></p>
         </div>
         <div class="row">
-            <ul>
-                <li>
-                    <span class="skill-name">Skill 1</span>
-                    <a href="/admin/skills/edit/1" target="_blank">Edit</a>
-                    <a href="/admin/skills/remove/1">Remove</a>
-                </li>
-                <li>
-                    <span class="skill-name">Skill 2</span>
-                    <a href="/admin/skills/edit/2" target="_blank">Edit</a>
-                    <a href="/admin/skills/remove/2">Remove</a>
-                </li>
-            </ul>
+
+            <?php if (! $args['skills']):
+                echo '<p>No skills. Create it</p>';
+            else: ?>
+                <ul>
+                    <?php foreach ($args['skills'] as $skill): ?>
+                        <li>
+                            <span class="skill-name"><?php echo $skill['skillName']; ?></span>
+                            <a href="/admin/skills/edit/<?php echo $skill['id']; ?>" target="_blank">Edit</a>
+                            <a href="/admin/skills/remove/<?php echo $skill['id']; ?>">Remove</a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+
         </div>
     </div>
 </main>

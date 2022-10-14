@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Model\ModelInterface;
+use App\Model\Skills;
 
 class SkillsRepository extends BasePdoRepository
 {
@@ -31,13 +32,18 @@ class SkillsRepository extends BasePdoRepository
         // TODO: Implement transformtoDb() method.
     }
 
-    protected function transformtoModel(array $data): ModelInterface
+    protected function transformtoModel(array $data): Skills
     {
-        // TODO: Implement transformtoModel() method.
+        return new Skills($data);
     }
 
     protected function getTableName(): string
     {
-        // TODO: Implement getTableName() method.
+        return 'skills';
+    }
+
+    protected function transformtoModelsArray(array $data): array
+    {
+        return $data;
     }
 }
