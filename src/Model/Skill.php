@@ -2,23 +2,13 @@
 
 namespace App\Model;
 
-class Skills implements ModelInterface
+class Skill implements ModelInterface
 {
-    private ?array $skills;
+    private ?string $skillName;
 
-    public function __construct(?array $skills)
+    public function __construct(?string $skillName)
     {
-        $this->skills = $skills;
-    }
-
-    public function getSkills(): ?array
-    {
-        return $this->skills;
-    }
-
-    public function setSkills(array $skills): void
-    {
-        $this->skills = $skills;
+        $this->skillName = $skillName;
     }
 
     public function setId(?int $id): ModelInterface
@@ -34,5 +24,15 @@ class Skills implements ModelInterface
     public static function createFromStorage(array $data): ModelInterface
     {
         // TODO: Implement createFromStorage() method.
+    }
+
+    public function getSkillName(): ?string
+    {
+        return $this->skillName;
+    }
+
+    public function setSkillName(?string $skillName): void
+    {
+        $this->skillName = $skillName;
     }
 }

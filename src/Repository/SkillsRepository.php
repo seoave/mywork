@@ -3,13 +3,19 @@
 namespace App\Repository;
 
 use App\Model\ModelInterface;
-use App\Model\Skills;
+use App\Model\Skill;
 
 class SkillsRepository extends BasePdoRepository
 {
     public function create(ModelInterface $model): ?ModelInterface
     {
-        // TODO: Implement create() method.
+        $statement = $this->pdo->prepare(
+            'INSERT INTO ' . $this->getTableName() . ' (skillName) 
+            VALUES (:name)
+            ');
+        $statement->execute(['name' => $model->getSkillName()]);
+
+        return $model;
     }
 
     public function update(ModelInterface $model): ?ModelInterface
@@ -27,14 +33,29 @@ class SkillsRepository extends BasePdoRepository
         // TODO: Implement findById() method.
     }
 
+    public function findByName(string $skill): ?ModelInterface
+    {
+        $statement = $this->pdo->prepare(
+            'SELECT * FROM ' . $this->getTableName() . ' WHERE LOWER(skillName) = :skillName
+            ');
+        $statement->execute(['skillName' => strtolower($skill)]);
+        $result = $statement->fetch(\PDO::FETCH_ASSOC);
+
+        if (! $result) {
+            return null;
+        }
+
+        return $this->transformtoModel($result);
+    }
+
     protected function transformtoDb(ModelInterface $model): array
     {
         // TODO: Implement transformtoDb() method.
     }
 
-    protected function transformtoModel(array $data): Skills
+    protected function transformtoModel(array $data): Skill
     {
-        return new Skills($data);
+        return new Skill($data['skillName']);
     }
 
     protected function getTableName(): string

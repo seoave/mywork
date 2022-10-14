@@ -13,7 +13,7 @@ require_once __DIR__ . '/parts/header.php'; ?>
         </div>
         <div class="row">
 
-            <?php if (! $args['skills']):
+            <?php if (empty($args['skills'])):
                 echo '<p>No skills. Create it</p>';
             else: ?>
                 <ul>

@@ -55,6 +55,16 @@ return [
             'method' => 'getSkillsPage',
         ],
     ],
+    '/admin/skills/new' => [
+        'get' => [
+            'controller' => \App\Controller\NewSkillPageController::class,
+            'method' => 'getNewSkillPage',
+        ],
+        'post' => [
+            'controller' => \App\Controller\NewSkillPageController::class,
+            'method' => 'sendNewSkill',
+        ],
+    ],
     '/account' => [
         'get' => [
             'controller' => \App\Controller\UserProfileController::class,
