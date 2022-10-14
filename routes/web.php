@@ -1,96 +1,102 @@
 <?php
 
-    return [
-        '/contact-us' => [
-            'get' => [
-                'controller' => \App\Controller\ContactController::class,
-                'method' => 'getContactPage',
-            ],
-            'post' => [
-                'controller' => \App\Controller\ContactController::class,
-                'method' => 'sendContactForm',
-            ],
+return [
+    '/contact-us' => [
+        'get' => [
+            'controller' => \App\Controller\ContactController::class,
+            'method' => 'getContactPage',
         ],
-        '/login' => [
-            'get' => [
-                'controller' => \App\Controller\LoginController::class,
-                'method' => 'getLoginPage',
-            ],
-            'post' => [
-                'controller' => \App\Controller\LoginController::class,
-                'method' => 'sendLoginForm',
-            ],
+        'post' => [
+            'controller' => \App\Controller\ContactController::class,
+            'method' => 'sendContactForm',
         ],
-        '/registration' => [
-            'get' => [
-                'controller' => \App\Controller\RegisterController::class,
-                'method' => 'getRegisterPage',
-            ],
-            'post' => [
-                'controller' => \App\Controller\RegisterController::class,
-                'method' => 'sendRegisterForm',
-            ],
+    ],
+    '/login' => [
+        'get' => [
+            'controller' => \App\Controller\LoginController::class,
+            'method' => 'getLoginPage',
         ],
-        '/' => [
-            'get' => [
-                'controller' => \App\Controller\HomePageController::class,
-                'method' => 'getHomePage',
-            ],
+        'post' => [
+            'controller' => \App\Controller\LoginController::class,
+            'method' => 'sendLoginForm',
         ],
-        '/404' => [
-            'get' => [
-                'controller' => \App\Controller\Page404Controller::class,
-                'method' => 'get404Page',
-            ],
+    ],
+    '/registration' => [
+        'get' => [
+            'controller' => \App\Controller\RegisterController::class,
+            'method' => 'getRegisterPage',
         ],
-        '/admin' => [
-            'get' => [
-                'controller' => \App\Controller\DashboardController::class,
-                'method' => 'getDashboardPage',
-            ],
+        'post' => [
+            'controller' => \App\Controller\RegisterController::class,
+            'method' => 'sendRegisterForm',
         ],
-        '/account' => [
-            'get' => [
-                'controller' => \App\Controller\UserProfileController::class,
-                'method' => 'getUserProfile',
-            ],
-            'post' => [
-                'controller' => \App\Controller\UserProfileController::class,
-                'method' => 'sendEditUserForm',
-            ],
+    ],
+    '/' => [
+        'get' => [
+            'controller' => \App\Controller\HomePageController::class,
+            'method' => 'getHomePage',
         ],
-        '/account/developer' => [
-            'get' => [
-                'controller' => \App\Controller\DeveloperProfilePageController::class,
-                'method' => 'getDeveloperProfilePage',
-            ],
-            'post' => [
-                'controller' => \App\Controller\DeveloperProfilePageController::class,
-                'method' => 'sendEditDeveloperProfile',
-            ],
+    ],
+    '/404' => [
+        'get' => [
+            'controller' => \App\Controller\Page404Controller::class,
+            'method' => 'get404Page',
         ],
-        '/jobs' => [
-            'get' => [
-                'controller' => \App\Controller\JobsPageController::class,
-                'method' => 'getJobs',
-            ],
+    ],
+    '/admin' => [
+        'get' => [
+            'controller' => \App\Controller\DashboardController::class,
+            'method' => 'getDashboardPage',
         ],
-        '/developers' => [
-            'get' => [
-                'controller' => \App\Controller\DevelopersPageController::class,
-                'method' => 'getDevelopers',
-            ],
+    ],
+    '/admin/skills' => [
+        'get' => [
+            'controller' => \App\Controller\SkillsPageController::class,
+            'method' => 'getSkillsPage',
         ],
-        '/developers/(?<id>\d+)' => [
-            'get' => [
-                'controller' => \App\Controller\DeveloperPublicPageController::class,
-                'method' => 'getDeveloper',
-            ],
+    ],
+    '/account' => [
+        'get' => [
+            'controller' => \App\Controller\UserProfileController::class,
+            'method' => 'getUserProfile',
         ],
-        '/logout' => [
-            'get' => [
-                'controller' => \App\Controller\LogoutController::class,
-                'method' => 'getLogout',
-            ],
+        'post' => [
+            'controller' => \App\Controller\UserProfileController::class,
+            'method' => 'sendEditUserForm',
         ],
-    ];
+    ],
+    '/account/developer' => [
+        'get' => [
+            'controller' => \App\Controller\DeveloperProfilePageController::class,
+            'method' => 'getDeveloperProfilePage',
+        ],
+        'post' => [
+            'controller' => \App\Controller\DeveloperProfilePageController::class,
+            'method' => 'sendEditDeveloperProfile',
+        ],
+    ],
+    '/jobs' => [
+        'get' => [
+            'controller' => \App\Controller\JobsPageController::class,
+            'method' => 'getJobs',
+        ],
+    ],
+    '/developers' => [
+        'get' => [
+            'controller' => \App\Controller\DevelopersPageController::class,
+            'method' => 'getDevelopers',
+        ],
+    ],
+    '/developers/(?<id>\d+)' => [
+        'get' => [
+            'controller' => \App\Controller\DeveloperPublicPageController::class,
+            'method' => 'getDeveloper',
+        ],
+    ],
+    '/logout' => [
+        'get' => [
+            'controller' => \App\Controller\LogoutController::class,
+            'method' => 'getLogout',
+        ],
+    ],
+];
