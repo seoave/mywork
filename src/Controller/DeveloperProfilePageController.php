@@ -95,7 +95,7 @@ class DeveloperProfilePageController extends AbstractController
         }
 
         $updatedResumeArray = [];
-        $updatedResumeArray['skills'] = ['PHP', 'GIT', 'CSS']; // TODO class Skills
+        $updatedResumeArray['skills'] = Container::getInstance()->getSkillsRepository()->findAll();
         $updatedResumeArray['categories'] = ['PHP', 'CSS', 'Javascript']; // TODO class Skills
         $updatedResumeArray['jobTypes'] = ['Remote', 'Office', 'Part-time']; // TODO class Skills
 
