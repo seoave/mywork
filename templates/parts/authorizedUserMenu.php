@@ -1,17 +1,24 @@
-<?php /** @var array $args */ ?>
+<?php /** @var array $args */
+$roleSlug = $_SESSION['userRole'] == 'candidate' ? 'developer' : 'recruiter';
+?>
 <ul class="account-menu">
-    <li><a href="/account/developer">Edit profile</a></li>
-
-    <?php if (! empty($args['userId'])): ?>
+    <?php if (! empty($_SESSION['userId']) && $_SESSION['userRole'] !== 'administrator'): ?>
         <li>
-            <a href="/developers/<?php echo $args['userId']; ?>" target="_blank">
+            <a href="/account/<?php echo $roleSlug ?>">
+                Profile
+            </a>
+        </li>
+        <li>
+            <a href="/<?php echo $roleSlug ?>s/<?php echo $_SESSION['userId'];
+            ?>"
+               target="_blank">
                 Public profile
             </a>
         </li>
     <?php endif; ?>
 
-    <li><a href="/account" target="_blank">
-            Edit account
+    <li><a href="/account">
+            Account
         </a>
     </li>
 </ul>

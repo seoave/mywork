@@ -1,70 +1,71 @@
 <?php
 
-    declare(strict_types=1);
+declare(strict_types=1);
 
-    namespace App\Controller;
+namespace App\Controller;
 
-    use App\Authorization;
-    use App\Redirection;
+use App\Authorization;
+use App\Redirection;
 
-    class LoginController extends AbstractController
+class LoginController extends AbstractController
+{
+    protected array $pageAttributes;
+
+    public function __construct()
     {
-        protected array $pageAttributes;
+        $this->pageAttributes = ['title' => 'Login'];
+    }
 
-        public function __construct()
-        {
-            $this->pageAttributes = ['title' => 'Login'];
-        }
+    public function getPageAttributes(): array
+    {
+        return $this->pageAttributes;
+    }
 
-        public function getPageAttributes(): array
-        {
-            return $this->pageAttributes;
-        }
+    public function setPageAttributes(array $pageAttributes): void
+    {
+        $this->pageAttributes = $pageAttributes;
+    }
 
-        public function setPageAttributes(array $pageAttributes): void
-        {
-            $this->pageAttributes = $pageAttributes;
-        }
+    public function getLoginPage(): string
+    {
+        return $this->render('login', $this->getPageAttributes());
+    }
 
-        public function getLoginPage(): string
-        {
+    public function sendLoginForm(): ?string
+    {
+        $loginEmail = trim($_POST['loginEmail']);
+        $loginPassword = trim($_POST['loginPassword']);
+
+        if (! $loginEmail || ! $loginPassword) {
+            $this->pageAttributes['loginMessage'] = 'Your email or password is empty. Please, fill all fields';
+
             return $this->render('login', $this->getPageAttributes());
         }
 
-        public function sendLoginForm(): ?string
-        {
-            $loginEmail = trim($_POST['loginEmail']);
-            $loginPassword = trim($_POST['loginPassword']);
+        $userRole = Authorization::dbAuth($loginEmail, $loginPassword);
 
-            if (! $loginEmail || ! $loginPassword) {
-                $this->pageAttributes['loginMessage'] = 'Your email or password is empty. Please, fill all fields';
-
-                return $this->render('login', $this->getPageAttributes());
+        if ($userRole) {
+            switch ($userRole) {
+                case 'registered':
+                case 'administrator':
+                    Redirection::redirectTo('/admin');
+                    break;
+                case 'recruiter':
+                    //$controller = new RecruiterProfilePageController();
+                    // echo $controller->getRecruiterProfilePage();
+                    Redirection::redirectTo('/account/recruiter');
+                    break;
+                case 'candidate':
+                    Redirection::redirectTo('/account/developer');
+                    break;
             }
-
-            $userRole = Authorization::dbAuth($loginEmail, $loginPassword);
-
-            if ($userRole) {
-                switch ($userRole) {
-                    case 'registered':
-                    case 'administrator':
-                        Redirection::redirectTo('/admin');
-                        break;
-                    case 'recruiter':
-                        $controller = new RecruiterProfilePageController();
-                        echo $controller->getRecruiterProfilePage();
-                        break;
-                    case 'candidate':
-                        Redirection::redirectTo('/account/developer');
-                        break;
-                }
-            } else {
-                $this->pageAttributes['loginMessage'] = 'Your email does not exist or password is wrong. 
+        } else {
+            $this->pageAttributes['loginMessage'] = 'Your email does not exist or password is wrong. 
             Repeat or <a href="/registration">Register</a>';
 
-                return $this->render('login', $this->getPageAttributes());
-            }
-
-            return null;
+            return $this->render('login', $this->getPageAttributes());
         }
+
+        return null;
     }
+}

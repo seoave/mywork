@@ -9,7 +9,14 @@ class RecruiterProfilePageController extends AbstractController
     public function __construct()
     {
         $pageAttributes = [
-            'title' => 'Recruiter profile'
+            'title' => 'Recruiter profile',
+            'companyName' => '',
+            'aboutCompany' => '',
+            'companyWebSite' => '',
+            'companyEmployees' => 0,
+            'companyCountry' => null,
+            'companyCity' => '',
+            'technologies' => [],
         ];
 
         $this->pageAttributes = $pageAttributes;
@@ -17,6 +24,6 @@ class RecruiterProfilePageController extends AbstractController
 
     public function getRecruiterProfilePage()
     {
-        return $this->render('recruiterProfile', $this->pageAttributes);
+        return $this->render('recruiterAccount', $this->pageAttributes);
     }
 }
