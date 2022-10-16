@@ -91,8 +91,8 @@ return [
             'method' => 'getRecruiterProfilePage',
         ],
         'post' => [
-            'controller' => \App\Controller\DeveloperProfilePageController::class,
-            'method' => 'sendEditDeveloperProfile',
+            'controller' => \App\Controller\RecruiterProfilePageController::class,
+            'method' => 'sendCompanyProfile',
         ],
     ],
     '/jobs' => [

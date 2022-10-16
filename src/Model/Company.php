@@ -2,109 +2,83 @@
 
 namespace App\Model;
 
-class Company extends User
+class Company implements ModelInterface
 {
-    private string $contactPersonName;
-    private string $contactPersonPhone;
-    private string $about;
-    private array $owners;
-    private string $history;
-    private int $numberOfEmployees;
-    private int $successfulHires;
-    private string $address;
-    /**
-     * @var string
-     * HR agency | Employer
-     */
-    private string $companyType;
+    private string $name;
+    private int $recruiterId;
+    private ?string $about;
+    private ?int $numberOfEmployees;
+    private ?string $country;
+    private ?string $city;
 
-    public function getContactPersonName(): string
+    public function __construct(string $name, int $recruiterId)
     {
-        return $this->contactPersonName;
+        $this->name = $name;
+        $this->recruiterId = $recruiterId;
     }
 
-    public function setContactPersonName(string $contactPersonName): void
+    public function setId(?int $id): ModelInterface
     {
-        $this->contactPersonName = $contactPersonName;
+        // TODO: Implement setId() method.
     }
 
-    public function getContactPersonPhone(): string
+    public function toStorage(): array
     {
-        return $this->contactPersonPhone;
+        // TODO: Implement toStorage() method.
     }
 
-    public function setContactPersonPhone(string $contactPersonPhone): void
+    public static function createFromStorage(array $data): ModelInterface
     {
-        $this->contactPersonPhone = $contactPersonPhone;
+        // TODO: Implement createFromStorage() method.
     }
 
-    public function getAbout(): string
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function getAbout(): ?string
     {
         return $this->about;
     }
 
-    public function setAbout(string $about): void
+    public function setAbout(?string $about): void
     {
         $this->about = $about;
     }
 
-    public function getOwners(): array
-    {
-        return $this->owners;
-    }
-
-    public function setOwners(array $owners): void
-    {
-        $this->owners = $owners;
-    }
-
-    public function getHistory(): string
-    {
-        return $this->history;
-    }
-
-    public function setHistory(string $history): void
-    {
-        $this->history = $history;
-    }
-
-    public function getNumberOfEmployees(): int
+    public function getNumberOfEmployees(): ?int
     {
         return $this->numberOfEmployees;
     }
 
-    public function setNumberOfEmployees(int $numberOfEmployees): void
+    public function setNumberOfEmployees(?int $numberOfEmployees): void
     {
         $this->numberOfEmployees = $numberOfEmployees;
     }
 
-    public function getSuccessfulHires(): int
+    public function getCountry(): ?string
     {
-        return $this->successfulHires;
+        return $this->country;
     }
 
-    public function setSuccessfulHires(int $successfulHires): void
+    public function setCountry(?string $country): void
     {
-        $this->successfulHires = $successfulHires;
+        $this->country = $country;
     }
 
-    public function getAddress(): string
+    public function getCity(): ?string
     {
-        return $this->address;
+        return $this->city;
     }
 
-    public function setAddress(string $address): void
+    public function setCity(?string $city): void
     {
-        $this->address = $address;
-    }
-
-    public function getCompanyType(): string
-    {
-        return $this->companyType;
-    }
-
-    public function setCompanyType(string $companyType): void
-    {
-        $this->companyType = $companyType;
+        $this->city = $city;
     }
 }

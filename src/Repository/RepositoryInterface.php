@@ -1,20 +1,20 @@
 <?php
 
-    declare(strict_types=1);
+declare(strict_types=1);
 
-    namespace App\Repository;
+namespace App\Repository;
 
-    use App\Model\ModelInterface;
+use App\Model\ModelInterface;
 
-    interface RepositoryInterface
-    {
-        public function findAll(): array;
+interface RepositoryInterface
+{
+    public function findAll(): array;
 
-        public function findById($id): ?ModelInterface;
+    public function findById($id): ?ModelInterface;
 
-        public function create(ModelInterface $model): ?ModelInterface;
+    public function create(ModelInterface $model): ?ModelInterface;
 
-        public function update(ModelInterface $model): ?ModelInterface;
+    public function update(ModelInterface $model): ?ModelInterface;
 
-        public function delete($id): ?ModelInterface;
-    }
+    public function delete($id): ?ModelInterface;
+}

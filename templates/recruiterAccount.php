@@ -31,7 +31,7 @@ require __DIR__ . '/parts/header.php'; ?>
                         <div class="form-group row mb-4">
                             <label for="company-about" class="col-sm-3 col-form-label">About company</label>
                             <div class="col-sm-9">
-                                 <textarea name="developerAbout" id="developer-about"
+                                 <textarea name="companyAbout" id="company-about"
                                            class="form-control"><?php echo $args['aboutCompany']; ?>
                                  </textarea>
                             </div>
@@ -351,14 +351,16 @@ require __DIR__ . '/parts/header.php'; ?>
                                         <input name="technologies[]"
                                                class="form-check-input"
                                                type="checkbox"
-                                               value="<?php echo $technology; ?>"
-                                               id="technologies<?php echo $technology; ?>"
-                                            <?php if ($args['companyTechnologies'] && in_array($technology, $args['companyTechnologies'])):
+                                               value="<?php echo $technology['skillName']; ?>"
+                                               id="technologies<?php echo $technology['skillName']; ?>"
+                                            <?php if (
+                                                $args['companyTechnologies'] && in_array($technology['skillName'], $args['companyTechnologies'])
+                                            ):
                                                 echo 'checked';
                                             endif; ?>
                                         >
-                                        <label class="form-check-label" for="technologies<?php echo $technology; ?>">
-                                            <?php echo $technology; ?>
+                                        <label class="form-check-label" for="technologies<?php echo $technology['skillName']; ?>">
+                                            <?php echo $technology['skillName']; ?>
                                         </label>
                                     </div>
                                 <?php endforeach; ?>
