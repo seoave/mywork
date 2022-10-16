@@ -345,14 +345,14 @@ require __DIR__ . '/parts/header.php'; ?>
                                         <input name="developerSkills[]"
                                                class="form-check-input"
                                                type="checkbox"
-                                               value="<?php echo $skill; ?>"
-                                               id="developerSkills<?php echo $skill; ?>"
-                                            <?php if ($args['developerSkills'] && in_array($skill, $args['developerSkills'])):
+                                               value="<?php echo $skill['skillName']; ?>"
+                                               id="developerSkills<?php echo $skill['skillName']; ?>"
+                                            <?php if ($args['developerSkills'] && in_array($skill['skillName'], $args['developerSkills'])):
                                                 echo 'checked';
                                             endif; ?>
                                         >
-                                        <label class="form-check-label" for="developerSkills<?php echo $skill; ?>">
-                                            <?php echo $skill; ?>
+                                        <label class="form-check-label" for="developerSkills<?php echo $skill['skillName']; ?>">
+                                            <?php echo $skill['skillName']; ?>
                                         </label>
                                     </div>
                                 <?php endforeach; ?>
