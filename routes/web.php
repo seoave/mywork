@@ -85,6 +85,16 @@ return [
             'method' => 'sendEditDeveloperProfile',
         ],
     ],
+    '/account/recruiter' => [
+        'get' => [
+            'controller' => \App\Controller\RecruiterProfilePageController::class,
+            'method' => 'getRecruiterProfilePage',
+        ],
+        'post' => [
+            'controller' => \App\Controller\DeveloperProfilePageController::class,
+            'method' => 'sendEditDeveloperProfile',
+        ],
+    ],
     '/jobs' => [
         'get' => [
             'controller' => \App\Controller\JobsPageController::class,
@@ -97,10 +107,22 @@ return [
             'method' => 'getDevelopers',
         ],
     ],
+    '/recruiters' => [
+        'get' => [
+            'controller' => \App\Controller\RecruitersPageController::class,
+            'method' => 'getRecruiters',
+        ],
+    ],
     '/developers/(?<id>\d+)' => [
         'get' => [
             'controller' => \App\Controller\DeveloperPublicPageController::class,
             'method' => 'getDeveloper',
+        ],
+    ],
+    '/recruiters/(?<id>\d+)' => [
+        'get' => [
+            'controller' => \App\Controller\RecruiterPublicProfilePageController::class,
+            'method' => 'getRecruiter',
         ],
     ],
     '/logout' => [

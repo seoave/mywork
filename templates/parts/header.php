@@ -1,9 +1,9 @@
 <?php
-    /** @var array $args */
-    // var_export($args);
-    //    echo '$_SESSION = ';
-    //    var_dump($_SESSION);
-    //    echo '<br>';
+/** @var array $args */
+//var_export($args);
+//echo '$_SESSION = ';
+//var_dump($_SESSION);
+//echo '<br>';
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php
-            echo $args['title']; ?></title>
+        echo $args['title']; ?></title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -45,11 +45,14 @@
                                 <a class="nav-link" aria-current="page" href="/jobs">Jobs</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/companies">Companies</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="/developers">Developers</a>
                             </li>
                         </ul>
                         <?php
-                            require_once __DIR__ . '/loginMenu.php'; ?>
+                        require_once __DIR__ . '/loginMenu.php'; ?>
                     </div>
                 </div>
             </nav>

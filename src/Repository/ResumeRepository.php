@@ -102,4 +102,9 @@ class ResumeRepository extends BasePdoRepository
 
         return $this->transformtoModel($resumeArray);
     }
+
+    protected function transformtoModelsArray(array $data): array
+    {
+        // TODO: Implement transformtoModelsArray() method.
+    }
 }
