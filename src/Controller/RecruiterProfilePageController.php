@@ -32,37 +32,56 @@ class RecruiterProfilePageController extends AbstractController
 
     public function getRecruiterProfilePage(): string
     {
+        $this->updatePageAttributes();
+
         return $this->render('recruiterAccount', $this->pageAttributes);
     }
 
     public function sendCompanyProfile(): string
     {
-        var_dump($_POST, $_SESSION);
         $companyName = ! empty($_POST['companyName']) ? $_POST['companyName'] : null;
         $companyAbout = ! empty($_POST['companyAbout']) ? $_POST['companyAbout'] : null;
         $companyWebSite = ! empty($_POST['companyWebSite']) ? $_POST['companyWebSite'] : null;
         $companyEmployees = ! empty($_POST['companyEmployees']) ? $_POST['companyEmployees'] : null;
         $companyCountry = ! empty($_POST['companyCountry']) ? $_POST['companyCountry'] : null;
         $companyCity = ! empty($_POST['companyCity']) ? $_POST['companyCity'] : null;
+        $companyTechnologies = ! empty($_POST['technologies']) ? $_POST['technologies'] : null;
 
         if ($companyName) {
             $company = new Company($companyName, $_SESSION['userId']);
-
-            var_dump($company);
+            $company->setAbout($companyAbout);
+            $company->setWebsite($companyWebSite);
+            $company->setNumberOfEmployees($companyEmployees);
+            $company->setCountry($companyCountry);
+            $company->setCity($companyCity);
+            $company->setTechnologies($companyTechnologies);
 
             if ($this->companyRepository->findByName($companyName) === null) {
-                //  $this->companyRepository->create();
+                $this->companyRepository->create($company);
             } else {
-                // $this->companyRepository->update();
+                $this->companyRepository->update($company);
             }
         }
 
-        // if not exists - create new company
-
-        // if exists - update company
-
-        // update pageAttributes
+        $this->updatePageAttributes();
 
         return $this->render('recruiterAccount', $this->pageAttributes);
+    }
+
+    private function updatePageAttributes(): void
+    {
+        if ($_SESSION['userId']) {
+            $company = $this->companyRepository->findById($_SESSION['userId']);
+
+            $updatedCompanyArray['companyName'] = $company->getName();
+            $updatedCompanyArray['aboutCompany'] = $company->getAbout();
+            $updatedCompanyArray['companyWebSite'] = $company->getWebsite();
+            $updatedCompanyArray['companyEmployees'] = $company->getNumberOfEmployees();
+            $updatedCompanyArray['companyCountry'] = $company->getCountry();
+            $updatedCompanyArray['companyCity'] = $company->getCity();
+            $updatedCompanyArray['companyTechnologies'] = $company->getTechnologies();
+
+            $this->pageAttributes = array_merge($this->pageAttributes, $updatedCompanyArray);
+        }
     }
 }

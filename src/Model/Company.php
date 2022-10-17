@@ -10,6 +10,8 @@ class Company implements ModelInterface
     private ?int $numberOfEmployees;
     private ?string $country;
     private ?string $city;
+    private ?string $website;
+    private ?array $technologies;
 
     public function __construct(string $name, int $recruiterId)
     {
@@ -42,14 +44,14 @@ class Company implements ModelInterface
         $this->name = $name;
     }
 
-    public function getAbout(): ?string
-    {
-        return $this->about;
-    }
-
     public function setAbout(?string $about): void
     {
         $this->about = $about;
+    }
+
+    public function getAbout(): ?string
+    {
+        return $this->about;
     }
 
     public function getNumberOfEmployees(): ?int
@@ -80,5 +82,35 @@ class Company implements ModelInterface
     public function setCity(?string $city): void
     {
         $this->city = $city;
+    }
+
+    public function getRecruiterId(): int
+    {
+        return $this->recruiterId;
+    }
+
+    public function setRecruiterId(int $recruiterId): void
+    {
+        $this->recruiterId = $recruiterId;
+    }
+
+    public function getWebsite(): ?string
+    {
+        return $this->website;
+    }
+
+    public function setWebsite(?string $website): void
+    {
+        $this->website = $website;
+    }
+
+    public function getTechnologies(): ?array
+    {
+        return $this->technologies;
+    }
+
+    public function setTechnologies(?array $technologies): void
+    {
+        $this->technologies = $technologies;
     }
 }

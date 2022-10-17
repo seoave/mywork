@@ -14,7 +14,7 @@ mysqli_query(
     employees INT,
     country VARCHAR(255),
     city VARCHAR(255),
-    skills VARCHAR(255),    
+    technologies VARCHAR(255),    
     PRIMARY KEY (id),
     FOREIGN KEY (userId) REFERENCES users (id)
     )'
