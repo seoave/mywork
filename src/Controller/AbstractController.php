@@ -8,7 +8,7 @@ use HttpRuntimeException;
 
 class AbstractController
 {
-    protected array $pageAttributes;
+    protected array $pageAttributes = [];
     protected const TEMPLATE_EXT = ['php', 'html'];
 
     public function render(string $templateName, array $args): string
@@ -20,14 +20,14 @@ class AbstractController
             $args['title'] = $args['title'] ?? 'No title';
             if (file_exists($fileName)) {
                 ob_start();
+
                 if (session_status() !== 2) {
                     session_start();
                 }
-                include $fileName;
-                $view = ob_get_contents();
-                ob_end_clean();
 
-                return $view;
+                include_once $fileName;
+
+                return ob_get_clean();
             }
         }
 

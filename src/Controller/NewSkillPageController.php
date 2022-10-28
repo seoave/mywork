@@ -7,7 +7,7 @@ use App\DI\Container;
 use App\Model\Skill;
 use App\Redirection;
 
-class NewSkillPageController extends AbstractController
+class NewSkillPageController extends AdminPagesController
 {
     protected array $pageAttributes;
 

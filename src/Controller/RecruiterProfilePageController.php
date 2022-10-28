@@ -7,7 +7,7 @@ use App\Model\Company;
 use App\Repository\RepositoryInterface;
 use App\Session;
 
-class RecruiterProfilePageController extends AbstractController
+class RecruiterProfilePageController extends RegisteredPagesController
 {
     protected array $pageAttributes;
     private RepositoryInterface $companyRepository;

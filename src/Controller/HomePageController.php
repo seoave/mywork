@@ -1,36 +1,41 @@
 <?php
 
-    declare(strict_types=1);
+declare(strict_types=1);
 
-    namespace App\Controller;
+namespace App\Controller;
 
-    use App\DI\Container;
+use App\DI\Container;
 
-    class HomePageController extends AbstractController
+class HomePageController extends AbstractController
+{
+    protected array $pageAttributes;
+
+    public function __construct()
     {
-        protected array $pageAttributes;
+        $pageAttributes = [
+            'title' => 'HomePage',
+        ];
 
-        public function __construct()
-        {
-            $pageAttributes = [
-                'title' => 'HomePage',
-            ];
-
-            $this->pageAttributes = $pageAttributes;
-        }
-
-        public function getHomePage(): string
-        {
-            $userRepository = Container::getInstance()->getUserRepository();
-
-            //  var_dump($userRepository->findAll());
-            //var_dump($userRepository->findByEmail('bernard@mail.ww'));
-
-            $resumeRepository = Container::getInstance()->getResumeRepository();
-
-            //var_dump($resumeRepository);
-
-
-            return $this->render('home', $this->pageAttributes);
-        }
+        $this->pageAttributes = $pageAttributes;
     }
+
+    public function getHomePage(): string
+    {
+        $userRepository = Container::getInstance()->getUserRepository();
+
+        //  var_dump($userRepository->findAll());
+        //var_dump($userRepository->findByEmail('bernard@mail.ww'));
+
+        $resumeRepository = Container::getInstance()->getResumeRepository();
+
+        //var_dump($resumeRepository);
+
+        $admin = new AdminPagesController();
+
+        //  var_dump($admin);
+
+        //var_dump($admin->adminCredentialCheck());
+
+        return $this->render('home', $this->pageAttributes);
+    }
+}
