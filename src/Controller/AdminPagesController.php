@@ -19,8 +19,7 @@ class AdminPagesController extends AbstractController
         $user = $userRepository->findById($_SESSION['userId']);
 
         if (! $user || $user->getRole() !== 'administrator') {
-            var_dump($user);
-            //  Redirection::redirectTo('/logout');
+            Redirection::redirectTo('/logout');
         }
 
         return true;
