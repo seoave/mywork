@@ -95,6 +95,17 @@ return [
             'method' => 'sendCompanyProfile',
         ],
     ],
+    '/account/recruiter/new-position' => [
+        'get' => [
+            'controller' => \App\Controller\NewPositionPageController::class,
+            'method' => 'getNewPositionPage',
+        ],
+        'post' => [
+            'controller' => \App\Controller\NewPositionPageController::class,
+            'method' => 'sendNewPosition',
+        ],
+    ],
+
     '/jobs' => [
         'get' => [
             'controller' => \App\Controller\JobsPageController::class,

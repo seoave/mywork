@@ -1,19 +1,37 @@
 <?php
 /** @var array $args */
-require __DIR__ . '/parts/header.php'; ?>
+require_once __DIR__ . '/parts/header.php'; ?>
 <main class="pt-5">
     <div class="container">
         <div class="row">
             <div class="col col-9">
                 <article class="recruiter-account">
 
-                    <?php require __DIR__ . '/parts/authorizedUserMenu.php'; ?>
+                    <?php require_once __DIR__ . '/parts/authorizedUserMenu.php'; ?>
 
                     <?php if (isset($args['updateDeveloperProfileMessage'])): ?>
                         <div class="alert alert-danger" role="alert">
                             <?php echo $args['updateDeveloperProfileMessage']; ?>
                         </div>
                     <?php endif; ?>
+
+                    <h1>Positions and company</h1>
+
+                    <h3 class="mb-36">Edit positions</h3>
+                    <p><a href="/account/recruiter/new-position" target="_blank">Add new position</a></p>
+                    <ul class="positions">
+                        <li>
+                            <span class="position-name">Position name</span>
+                            <span class="edit-position"><a href="#edit_position">Edit position</a></span>
+                            <span class="delete-position"><a href="#delete_position">Delete position</a></span>
+                        </li>
+                        <li>
+                            <span class="position-name">Position name</span>
+                            <span class="edit-position"><a href="#edit_position">Edit position</a></span>
+                            <span class="delete-position"><a href="#delete_position">Delete position</a></span>
+                        </li>
+                    </ul>
+                    <h3 class="mb-36">Edit company</h3>
 
                     <form id="edit-recruiter-profile" action="/account/recruiter" method="post" class="edit-recruiter-profile">
                         <div class="form-group row mb-4">
@@ -375,4 +393,4 @@ require __DIR__ . '/parts/header.php'; ?>
         </div>
     </div>
 </main>
-<?php require __DIR__ . '/parts/footer.php'; ?>
+<?php require_once __DIR__ . '/parts/footer.php'; ?>
