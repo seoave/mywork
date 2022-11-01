@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\DI;
 
+use App\Repository\CompanyRepository;
 use App\Repository\JsonRepository;
 use App\Repository\RepositoryInterface;
 use App\Repository\ResumeRepository;
@@ -15,6 +16,7 @@ class Container
     private ?RepositoryInterface $userRepository = null;
     private ?RepositoryInterface $resumeRepository = null;
     private ?RepositoryInterface $skillsRepository = null;
+    private ?RepositoryInterface $companyRepository = null;
     private ?\PDO $pdo = null;
     private array $parameters;
 
@@ -64,6 +66,15 @@ class Container
         }
 
         return $this->skillsRepository;
+    }
+
+    public function getCompanyRepository(): ?RepositoryInterface
+    {
+        if ($this->companyRepository === null) {
+            $this->companyRepository = new CompanyRepository();
+        }
+
+        return $this->companyRepository;
     }
 
     public static function getInstance(): self

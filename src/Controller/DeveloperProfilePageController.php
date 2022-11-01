@@ -7,7 +7,7 @@ use App\Model\Resume;
 use App\Repository\RepositoryInterface;
 use App\Session;
 
-class DeveloperProfilePageController extends AbstractController
+class DeveloperProfilePageController extends RegisteredPagesController
 {
     protected array $pageAttributes;
     private RepositoryInterface $resumeRepository;

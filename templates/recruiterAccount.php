@@ -1,19 +1,37 @@
 <?php
 /** @var array $args */
-require __DIR__ . '/parts/header.php'; ?>
+require_once __DIR__ . '/parts/header.php'; ?>
 <main class="pt-5">
     <div class="container">
         <div class="row">
             <div class="col col-9">
                 <article class="recruiter-account">
 
-                    <?php require __DIR__ . '/parts/authorizedUserMenu.php'; ?>
+                    <?php require_once __DIR__ . '/parts/authorizedUserMenu.php'; ?>
 
                     <?php if (isset($args['updateDeveloperProfileMessage'])): ?>
                         <div class="alert alert-danger" role="alert">
                             <?php echo $args['updateDeveloperProfileMessage']; ?>
                         </div>
                     <?php endif; ?>
+
+                    <h1>Positions and company</h1>
+
+                    <h3 class="mb-36">Edit positions</h3>
+                    <p><a href="/account/recruiter/new-position" target="_blank">Add new position</a></p>
+                    <ul class="positions">
+                        <li>
+                            <span class="position-name">Position name</span>
+                            <span class="edit-position"><a href="#edit_position">Edit position</a></span>
+                            <span class="delete-position"><a href="#delete_position">Delete position</a></span>
+                        </li>
+                        <li>
+                            <span class="position-name">Position name</span>
+                            <span class="edit-position"><a href="#edit_position">Edit position</a></span>
+                            <span class="delete-position"><a href="#delete_position">Delete position</a></span>
+                        </li>
+                    </ul>
+                    <h3 class="mb-36">Edit company</h3>
 
                     <form id="edit-recruiter-profile" action="/account/recruiter" method="post" class="edit-recruiter-profile">
                         <div class="form-group row mb-4">
@@ -31,7 +49,7 @@ require __DIR__ . '/parts/header.php'; ?>
                         <div class="form-group row mb-4">
                             <label for="company-about" class="col-sm-3 col-form-label">About company</label>
                             <div class="col-sm-9">
-                                 <textarea name="developerAbout" id="developer-about"
+                                 <textarea name="companyAbout" id="company-about"
                                            class="form-control"><?php echo $args['aboutCompany']; ?>
                                  </textarea>
                             </div>
@@ -351,14 +369,16 @@ require __DIR__ . '/parts/header.php'; ?>
                                         <input name="technologies[]"
                                                class="form-check-input"
                                                type="checkbox"
-                                               value="<?php echo $technology; ?>"
-                                               id="technologies<?php echo $technology; ?>"
-                                            <?php if ($args['companyTechnologies'] && in_array($technology, $args['companyTechnologies'])):
+                                               value="<?php echo $technology['skillName']; ?>"
+                                               id="technologies<?php echo $technology['skillName']; ?>"
+                                            <?php if (
+                                                $args['companyTechnologies'] && in_array($technology['skillName'], $args['companyTechnologies'])
+                                            ):
                                                 echo 'checked';
                                             endif; ?>
                                         >
-                                        <label class="form-check-label" for="technologies<?php echo $technology; ?>">
-                                            <?php echo $technology; ?>
+                                        <label class="form-check-label" for="technologies<?php echo $technology['skillName']; ?>">
+                                            <?php echo $technology['skillName']; ?>
                                         </label>
                                     </div>
                                 <?php endforeach; ?>
@@ -373,4 +393,4 @@ require __DIR__ . '/parts/header.php'; ?>
         </div>
     </div>
 </main>
-<?php require __DIR__ . '/parts/footer.php'; ?>
+<?php require_once __DIR__ . '/parts/footer.php'; ?>

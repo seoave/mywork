@@ -51,8 +51,6 @@ class LoginController extends AbstractController
                     Redirection::redirectTo('/admin');
                     break;
                 case 'recruiter':
-                    //$controller = new RecruiterProfilePageController();
-                    // echo $controller->getRecruiterProfilePage();
                     Redirection::redirectTo('/account/recruiter');
                     break;
                 case 'candidate':
@@ -60,7 +58,7 @@ class LoginController extends AbstractController
                     break;
             }
         } else {
-            $this->pageAttributes['loginMessage'] = 'Your email does not exist or password is wrong. 
+            $this->pageAttributes['loginMessage'] = 'Your email does not exist or password is wrong.
             Repeat or <a href="/registration">Register</a>';
 
             return $this->render('login', $this->getPageAttributes());

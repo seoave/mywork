@@ -1,9 +1,11 @@
 <?php
 
-    require_once __DIR__ . '/bootstrap.php';
+use App\Controller\Page404Controller;
+
+require_once __DIR__ . '/bootstrap.php';
 
     $routes = array_merge(
-        include(__DIR__ . '/routes/api.php'),
+        include (__DIR__ . '/routes/api.php'),
         include(__DIR__ . '/routes/web.php'),
     );
 
@@ -12,7 +14,7 @@
     $response = null;
 
     if (! isset($routes[$uri][$method])) {
-        $controller = new \App\Controller\Page404Controller();
+        $controller = new Page404Controller();
         $response = $controller->get404Page();
     }
 

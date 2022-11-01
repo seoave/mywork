@@ -5,7 +5,7 @@ namespace App\Controller;
 
 use App\DI\Container;
 
-class SkillsPageController extends AbstractController
+class SkillsPageController extends AdminPagesController
 {
     protected array $pageAttributes;
 
@@ -19,6 +19,8 @@ class SkillsPageController extends AbstractController
 
     public function getSkillsPage(): string
     {
+        $this->adminCredentialCheck();
+
         return $this->render('adminSkills', $this->pageAttributes);
     }
 }
