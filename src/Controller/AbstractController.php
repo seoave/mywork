@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use HttpRuntimeException;
+use App\Exception\HttpRuntimeException;
 
 class AbstractController
 {
     protected array $pageAttributes = [];
     protected const TEMPLATE_EXT = ['php', 'html'];
-
+    
     public function render(string $templateName, array $args): string
     {
         $basePath = $_SERVER['DOCUMENT_ROOT'] . '/templates/';
